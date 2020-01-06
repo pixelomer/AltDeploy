@@ -735,16 +735,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/usr/local/Cellar/libusbmuxd/HEAD-563cd25/lib",
-					"/usr/local/Cellar/openssl@1.1/1.1.1d/lib",
-					/usr/local/Cellar/libplist/2.1.0/lib,
-					"/usr/local/Cellar/libimobiledevice/HEAD-d04f8ff_6/lib",
-					"$(PROJECT_DIR)/Objects",
-					"$(PROJECT_DIR)/Dependencies",
-					"$(PROJECT_DIR)/Dependencies/Individual",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "-Dunix=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
@@ -773,16 +763,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/usr/local/Cellar/libusbmuxd/HEAD-563cd25/lib",
-					"/usr/local/Cellar/openssl@1.1/1.1.1d/lib",
-					/usr/local/Cellar/libplist/2.1.0/lib,
-					"/usr/local/Cellar/libimobiledevice/HEAD-d04f8ff_6/lib",
-					"$(PROJECT_DIR)/Objects",
-					"$(PROJECT_DIR)/Dependencies",
-					"$(PROJECT_DIR)/Dependencies/Individual",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "-Dunix=1";
