@@ -1,0 +1,820 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */ = {isa = PBXBuildFile; fileRef = CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */; };
+		CE7AA86423C3B66B009EFA51 /* dependencies.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7AA85823C3B630009EFA51 /* dependencies.a */; };
+		CEA24B5E23C1234100A6DB11 /* ALTAppleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3023C1234100A6DB11 /* ALTAppleAPI.m */; };
+		CEA24B5F23C1234100A6DB11 /* ALTAppleAPI+Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3123C1234100A6DB11 /* ALTAppleAPI+Authentication.m */; };
+		CEA24B6023C1234100A6DB11 /* ALTAppleAPISession.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3223C1234100A6DB11 /* ALTAppleAPISession.m */; };
+		CEA24B6123C1234100A6DB11 /* ALTSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3923C1234100A6DB11 /* ALTSigner.mm */; };
+		CEA24B6223C1234100A6DB11 /* ALTCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3B23C1234100A6DB11 /* ALTCapabilities.m */; };
+		CEA24B6423C1234100A6DB11 /* ALTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B4723C1234100A6DB11 /* ALTDevice.m */; };
+		CEA24B6523C1234100A6DB11 /* ALTAppGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B4823C1234100A6DB11 /* ALTAppGroup.m */; };
+		CEA24B6623C1234100A6DB11 /* ALTAppID.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B4A23C1234100A6DB11 /* ALTAppID.m */; };
+		CEA24B6723C1234100A6DB11 /* ALTTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B4B23C1234100A6DB11 /* ALTTeam.m */; };
+		CEA24B6823C1234100A6DB11 /* ALTCertificateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B4C23C1234100A6DB11 /* ALTCertificateRequest.m */; };
+		CEA24B6923C1234100A6DB11 /* ALTAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B4D23C1234100A6DB11 /* ALTAccount.m */; };
+		CEA24B6A23C1234100A6DB11 /* ALTCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5023C1234100A6DB11 /* ALTCertificate.m */; };
+		CEA24B6B23C1234100A6DB11 /* ALTProvisioningProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5123C1234100A6DB11 /* ALTProvisioningProfile.m */; };
+		CEA24B6C23C1234100A6DB11 /* ALTAnisetteData.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5323C1234100A6DB11 /* ALTAnisetteData.m */; };
+		CEA24B6D23C1234100A6DB11 /* ALTApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5423C1234100A6DB11 /* ALTApplication.mm */; };
+		CEA24B6E23C1234100A6DB11 /* ldid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5823C1234100A6DB11 /* ldid.cpp */; };
+		CEA24B6F23C1234100A6DB11 /* NSFileManager+Apps.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5A23C1234100A6DB11 /* NSFileManager+Apps.m */; };
+		CEA24B7023C1234100A6DB11 /* NSError+ALTErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5C23C1234100A6DB11 /* NSError+ALTErrors.m */; };
+		CEA24B7723C1278B00A6DB11 /* NSError+ALTServerError.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */; };
+		CEA24BE023C12A3100A6DB11 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8823C12A3100A6DB11 /* unzip.c */; };
+		CEA24BE123C12A3100A6DB11 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8923C12A3100A6DB11 /* zip.c */; };
+		CEA24BE223C12A3100A6DB11 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8A23C12A3100A6DB11 /* ioapi.c */; };
+		CEA24BE323C12A3100A6DB11 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8B23C12A3100A6DB11 /* mztools.c */; };
+		CEA24BE423C12A3100A6DB11 /* minizip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B9123C12A3100A6DB11 /* minizip.c */; };
+		CEA24BE523C12A3100A6DB11 /* miniunz.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B9223C12A3100A6DB11 /* miniunz.c */; };
+		CEA24BEB23C130CD00A6DB11 /* ALTDeviceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BE823C130CD00A6DB11 /* ALTDeviceManager.mm */; };
+		CEA24BEC23C130CD00A6DB11 /* ALTDeviceManager+Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BE923C130CD00A6DB11 /* ALTDeviceManager+Installation.swift */; };
+		CEA24BF723C132E000A6DB11 /* Result+Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */; };
+		CEA24BFB23C133C500A6DB11 /* AnisetteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */; };
+		CEA6378023C3941200CEC7A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377623C3941200CEC7A9 /* Assets.xcassets */; };
+		CEA6378123C3941200CEC7A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377723C3941200CEC7A9 /* ViewController.m */; };
+		CEA6378223C3941200CEC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377823C3941200CEC7A9 /* Main.storyboard */; };
+		CEA6378323C3941200CEC7A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377A23C3941200CEC7A9 /* main.m */; };
+		CEA6378423C3941200CEC7A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377C23C3941200CEC7A9 /* AppDelegate.m */; };
+		CEA6378523C3941200CEC7A9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377D23C3941200CEC7A9 /* Info.plist */; };
+		CEA6378623C3941200CEC7A9 /* apple.pem in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377F23C3941200CEC7A9 /* apple.pem */; };
+		CEBF417D23C2599C004338D2 /* SAMKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF417C23C2599C004338D2 /* SAMKeychainQuery.m */; };
+		CEBF418023C259CA004338D2 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF417F23C259CA004338D2 /* SAMKeychain.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CEA24AB723C1123F00A6DB11 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AltPlugin.mailbundle; sourceTree = "<group>"; };
+		CE7AA85723C3B62A009EFA51 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dependencies; sourceTree = "<group>"; };
+		CE7AA85823C3B630009EFA51 /* dependencies.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = dependencies.a; path = Dependencies/dependencies.a; sourceTree = "<group>"; };
+		CE7AA85A23C3B652009EFA51 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Dependencies/Individual/libimobiledevice.a; sourceTree = "<group>"; };
+		CE7AA85C23C3B655009EFA51 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Dependencies/Individual/libssl.a; sourceTree = "<group>"; };
+		CE7AA85E23C3B657009EFA51 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/Individual/libcrypto.a; sourceTree = "<group>"; };
+		CE7AA86023C3B658009EFA51 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = Dependencies/Individual/libplist.a; sourceTree = "<group>"; };
+		CE7AA86223C3B65A009EFA51 /* libusbmuxd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libusbmuxd.a; path = Dependencies/Individual/libusbmuxd.a; sourceTree = "<group>"; };
+		CEA24A9923C10F8900A6DB11 /* AltDeploy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AltDeploy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEA24B2E23C1234100A6DB11 /* AltSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltSign.h; sourceTree = "<group>"; };
+		CEA24B3023C1234100A6DB11 /* ALTAppleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAppleAPI.m; sourceTree = "<group>"; };
+		CEA24B3123C1234100A6DB11 /* ALTAppleAPI+Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALTAppleAPI+Authentication.m"; sourceTree = "<group>"; };
+		CEA24B3223C1234100A6DB11 /* ALTAppleAPISession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAppleAPISession.m; sourceTree = "<group>"; };
+		CEA24B3323C1234100A6DB11 /* ALTAppleAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAppleAPI.h; sourceTree = "<group>"; };
+		CEA24B3423C1234100A6DB11 /* ALTAppleAPI+Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALTAppleAPI+Authentication.h"; sourceTree = "<group>"; };
+		CEA24B3523C1234100A6DB11 /* ALTAppleAPI_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAppleAPI_Private.h; sourceTree = "<group>"; };
+		CEA24B3623C1234100A6DB11 /* ALTAppleAPISession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAppleAPISession.h; sourceTree = "<group>"; };
+		CEA24B3823C1234100A6DB11 /* ALTSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTSigner.h; sourceTree = "<group>"; };
+		CEA24B3923C1234100A6DB11 /* ALTSigner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ALTSigner.mm; sourceTree = "<group>"; };
+		CEA24B3B23C1234100A6DB11 /* ALTCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTCapabilities.m; sourceTree = "<group>"; };
+		CEA24B3C23C1234100A6DB11 /* ALTCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTCapabilities.h; sourceTree = "<group>"; };
+		CEA24B4123C1234100A6DB11 /* ALTAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAccount.h; sourceTree = "<group>"; };
+		CEA24B4223C1234100A6DB11 /* ALTCertificateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTCertificateRequest.h; sourceTree = "<group>"; };
+		CEA24B4323C1234100A6DB11 /* ALTTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTTeam.h; sourceTree = "<group>"; };
+		CEA24B4423C1234100A6DB11 /* ALTProvisioningProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTProvisioningProfile.h; sourceTree = "<group>"; };
+		CEA24B4523C1234100A6DB11 /* ALTCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTCertificate.h; sourceTree = "<group>"; };
+		CEA24B4623C1234100A6DB11 /* ALTModel+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALTModel+Internal.h"; sourceTree = "<group>"; };
+		CEA24B4723C1234100A6DB11 /* ALTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTDevice.m; sourceTree = "<group>"; };
+		CEA24B4823C1234100A6DB11 /* ALTAppGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAppGroup.m; sourceTree = "<group>"; };
+		CEA24B4923C1234100A6DB11 /* ALTAnisetteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAnisetteData.h; sourceTree = "<group>"; };
+		CEA24B4A23C1234100A6DB11 /* ALTAppID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAppID.m; sourceTree = "<group>"; };
+		CEA24B4B23C1234100A6DB11 /* ALTTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTTeam.m; sourceTree = "<group>"; };
+		CEA24B4C23C1234100A6DB11 /* ALTCertificateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTCertificateRequest.m; sourceTree = "<group>"; };
+		CEA24B4D23C1234100A6DB11 /* ALTAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAccount.m; sourceTree = "<group>"; };
+		CEA24B4E23C1234100A6DB11 /* ALTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTDevice.h; sourceTree = "<group>"; };
+		CEA24B4F23C1234100A6DB11 /* ALTAppGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAppGroup.h; sourceTree = "<group>"; };
+		CEA24B5023C1234100A6DB11 /* ALTCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTCertificate.m; sourceTree = "<group>"; };
+		CEA24B5123C1234100A6DB11 /* ALTProvisioningProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTProvisioningProfile.m; sourceTree = "<group>"; };
+		CEA24B5223C1234100A6DB11 /* ALTAppID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAppID.h; sourceTree = "<group>"; };
+		CEA24B5323C1234100A6DB11 /* ALTAnisetteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAnisetteData.m; sourceTree = "<group>"; };
+		CEA24B5423C1234100A6DB11 /* ALTApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ALTApplication.mm; sourceTree = "<group>"; };
+		CEA24B5523C1234100A6DB11 /* ALTApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTApplication.h; sourceTree = "<group>"; };
+		CEA24B5723C1234100A6DB11 /* ldid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ldid.hpp; sourceTree = "<group>"; };
+		CEA24B5823C1234100A6DB11 /* ldid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ldid.cpp; sourceTree = "<group>"; };
+		CEA24B5A23C1234100A6DB11 /* NSFileManager+Apps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Apps.m"; sourceTree = "<group>"; };
+		CEA24B5B23C1234100A6DB11 /* NSError+ALTErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ALTErrors.h"; sourceTree = "<group>"; };
+		CEA24B5C23C1234100A6DB11 /* NSError+ALTErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ALTErrors.m"; sourceTree = "<group>"; };
+		CEA24B5D23C1234100A6DB11 /* NSFileManager+Apps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Apps.h"; sourceTree = "<group>"; };
+		CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ALTServerError.h"; sourceTree = "<group>"; };
+		CEA24B7523C1278B00A6DB11 /* AltKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltKit.h; sourceTree = "<group>"; };
+		CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ALTServerError.m"; sourceTree = "<group>"; };
+		CEA24B8823C12A3100A6DB11 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		CEA24B8923C12A3100A6DB11 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		CEA24B8A23C12A3100A6DB11 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		CEA24B8B23C12A3100A6DB11 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		CEA24B8C23C12A3100A6DB11 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		CEA24B8D23C12A3100A6DB11 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		CEA24B8E23C12A3100A6DB11 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		CEA24B8F23C12A3100A6DB11 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		CEA24B9023C12A3100A6DB11 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		CEA24B9123C12A3100A6DB11 /* minizip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minizip.c; sourceTree = "<group>"; };
+		CEA24B9223C12A3100A6DB11 /* miniunz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = miniunz.c; sourceTree = "<group>"; };
+		CEA24B9423C12A3100A6DB11 /* cctest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cctest.h; sourceTree = "<group>"; };
+		CEA24B9523C12A3100A6DB11 /* cczp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cczp.h; sourceTree = "<group>"; };
+		CEA24B9623C12A3100A6DB11 /* ccmd4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmd4.h; sourceTree = "<group>"; };
+		CEA24B9723C12A3100A6DB11 /* ccrng_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_priv.h; sourceTree = "<group>"; };
+		CEA24B9823C12A3100A6DB11 /* ccrng_sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_sequence.h; sourceTree = "<group>"; };
+		CEA24B9923C12A3100A6DB11 /* ccz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccz.h; sourceTree = "<group>"; };
+		CEA24B9A23C12A3100A6DB11 /* ccaes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccaes.h; sourceTree = "<group>"; };
+		CEA24B9B23C12A3100A6DB11 /* cchkdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cchkdf.h; sourceTree = "<group>"; };
+		CEA24B9C23C12A3100A6DB11 /* ccec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccec.h; sourceTree = "<group>"; };
+		CEA24B9D23C12A3100A6DB11 /* cc_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_config.h; sourceTree = "<group>"; };
+		CEA24B9E23C12A3100A6DB11 /* ccsrp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccsrp.h; sourceTree = "<group>"; };
+		CEA24B9F23C12A3100A6DB11 /* ccrng_ecfips_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_ecfips_test.h; sourceTree = "<group>"; };
+		CEA24BA023C12A3100A6DB11 /* ccrng_drbg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_drbg.h; sourceTree = "<group>"; };
+		CEA24BA123C12A3100A6DB11 /* cc_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_priv.h; sourceTree = "<group>"; };
+		CEA24BA223C12A3100A6DB11 /* fipspost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fipspost.h; sourceTree = "<group>"; };
+		CEA24BA323C12A3100A6DB11 /* ccec25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccec25519.h; sourceTree = "<group>"; };
+		CEA24BA423C12A3100A6DB11 /* ccdh_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdh_priv.h; sourceTree = "<group>"; };
+		CEA24BA523C12A3100A6DB11 /* ccder_rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccder_rsa.h; sourceTree = "<group>"; };
+		CEA24BA623C12A3100A6DB11 /* ccrc4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrc4.h; sourceTree = "<group>"; };
+		CEA24BA723C12A3100A6DB11 /* ccdes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdes.h; sourceTree = "<group>"; };
+		CEA24BA823C12A3100A6DB11 /* ccrsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrsa.h; sourceTree = "<group>"; };
+		CEA24BA923C12A3100A6DB11 /* cc_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_debug.h; sourceTree = "<group>"; };
+		CEA24BAA23C12A3100A6DB11 /* ccblowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccblowfish.h; sourceTree = "<group>"; };
+		CEA24BAB23C12A3100A6DB11 /* ccchacha20poly1305_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccchacha20poly1305_priv.h; sourceTree = "<group>"; };
+		CEA24BAC23C12A3100A6DB11 /* cczp_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cczp_priv.h; sourceTree = "<group>"; };
+		CEA24BAD23C12A3100A6DB11 /* ccdrbg_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdrbg_impl.h; sourceTree = "<group>"; };
+		CEA24BAE23C12A3100A6DB11 /* ccprime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccprime.h; sourceTree = "<group>"; };
+		CEA24BAF23C12A3100A6DB11 /* ccrng_pbkdf2_prng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_pbkdf2_prng.h; sourceTree = "<group>"; };
+		CEA24BB023C12A3100A6DB11 /* ccdigest_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdigest_priv.h; sourceTree = "<group>"; };
+		CEA24BB123C12A3100A6DB11 /* ccnistkdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccnistkdf.h; sourceTree = "<group>"; };
+		CEA24BB223C12A3100A6DB11 /* ccasn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccasn1.h; sourceTree = "<group>"; };
+		CEA24BB323C12A3100A6DB11 /* ccripemd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccripemd.h; sourceTree = "<group>"; };
+		CEA24BB423C12A3100A6DB11 /* ccchacha20poly1305.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccchacha20poly1305.h; sourceTree = "<group>"; };
+		CEA24BB523C12A3100A6DB11 /* cc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc.h; sourceTree = "<group>"; };
+		CEA24BB623C12A3100A6DB11 /* ccder_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccder_priv.h; sourceTree = "<group>"; };
+		CEA24BB723C12A3100A6DB11 /* ccder_decode_eckey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccder_decode_eckey.h; sourceTree = "<group>"; };
+		CEA24BB823C12A3100A6DB11 /* ccrsa_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrsa_priv.h; sourceTree = "<group>"; };
+		CEA24BB923C12A3100A6DB11 /* ccdh_gp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdh_gp.h; sourceTree = "<group>"; };
+		CEA24BBA23C12A3100A6DB11 /* ccrng_rsafips_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_rsafips_test.h; sourceTree = "<group>"; };
+		CEA24BBB23C12A3100A6DB11 /* ccperf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccperf.h; sourceTree = "<group>"; };
+		CEA24BBC23C12A3100A6DB11 /* ccder_encode_eckey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccder_encode_eckey.h; sourceTree = "<group>"; };
+		CEA24BBD23C12A3100A6DB11 /* ccn_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccn_priv.h; sourceTree = "<group>"; };
+		CEA24BBE23C12A3100A6DB11 /* ccz_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccz_priv.h; sourceTree = "<group>"; };
+		CEA24BBF23C12A3100A6DB11 /* ccdrbg_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdrbg_factory.h; sourceTree = "<group>"; };
+		CEA24BC023C12A3100A6DB11 /* ccansikdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccansikdf.h; sourceTree = "<group>"; };
+		CEA24BC123C12A3100A6DB11 /* ccmd2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmd2.h; sourceTree = "<group>"; };
+		CEA24BC223C12A3100A6DB11 /* ccsha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccsha1.h; sourceTree = "<group>"; };
+		CEA24BC323C12A3100A6DB11 /* ccecies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccecies.h; sourceTree = "<group>"; };
+		CEA24BC423C12A3100A6DB11 /* cc_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_memory.h; sourceTree = "<group>"; };
+		CEA24BC523C12A3100A6DB11 /* ccwrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccwrap.h; sourceTree = "<group>"; };
+		CEA24BC623C12A3100A6DB11 /* ccmode_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmode_factory.h; sourceTree = "<group>"; };
+		CEA24BC723C12A3100A6DB11 /* ccrc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrc2.h; sourceTree = "<group>"; };
+		CEA24BC823C12A3100A6DB11 /* ccsrp_gp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccsrp_gp.h; sourceTree = "<group>"; };
+		CEA24BC923C12A3100A6DB11 /* cccmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cccmac.h; sourceTree = "<group>"; };
+		CEA24BCA23C12A3100A6DB11 /* ccn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccn.h; sourceTree = "<group>"; };
+		CEA24BCB23C12A3100A6DB11 /* ccmd5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmd5.h; sourceTree = "<group>"; };
+		CEA24BCC23C12A3100A6DB11 /* ccrng_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_system.h; sourceTree = "<group>"; };
+		CEA24BCD23C12A3100A6DB11 /* ccmode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmode.h; sourceTree = "<group>"; };
+		CEA24BCE23C12A3100A6DB11 /* ccec_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccec_priv.h; sourceTree = "<group>"; };
+		CEA24BCF23C12A3100A6DB11 /* ccrng_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng_test.h; sourceTree = "<group>"; };
+		CEA24BD023C12A3100A6DB11 /* cchmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cchmac.h; sourceTree = "<group>"; };
+		CEA24BD123C12A3100A6DB11 /* ccpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccpad.h; sourceTree = "<group>"; };
+		CEA24BD223C12A3100A6DB11 /* ccecies_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccecies_priv.h; sourceTree = "<group>"; };
+		CEA24BD323C12A3100A6DB11 /* ccsha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccsha2.h; sourceTree = "<group>"; };
+		CEA24BD423C12A3100A6DB11 /* ccpbkdf2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccpbkdf2.h; sourceTree = "<group>"; };
+		CEA24BD523C12A3100A6DB11 /* ccec25519_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccec25519_priv.h; sourceTree = "<group>"; };
+		CEA24BD623C12A3100A6DB11 /* cc_runtime_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_runtime_config.h; sourceTree = "<group>"; };
+		CEA24BD723C12A3100A6DB11 /* ccdh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdh.h; sourceTree = "<group>"; };
+		CEA24BD823C12A3100A6DB11 /* ccmode_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmode_impl.h; sourceTree = "<group>"; };
+		CEA24BD923C12A3100A6DB11 /* ccmode_siv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmode_siv.h; sourceTree = "<group>"; };
+		CEA24BDA23C12A3100A6DB11 /* ccdrbg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdrbg.h; sourceTree = "<group>"; };
+		CEA24BDB23C12A3100A6DB11 /* ccmode_siv_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmode_siv_priv.h; sourceTree = "<group>"; };
+		CEA24BDC23C12A3100A6DB11 /* cccast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cccast.h; sourceTree = "<group>"; };
+		CEA24BDD23C12A3100A6DB11 /* ccdigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccdigest.h; sourceTree = "<group>"; };
+		CEA24BDE23C12A3100A6DB11 /* ccder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccder.h; sourceTree = "<group>"; };
+		CEA24BDF23C12A3100A6DB11 /* ccrng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccrng.h; sourceTree = "<group>"; };
+		CEA24BE823C130CD00A6DB11 /* ALTDeviceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ALTDeviceManager.mm; sourceTree = "<group>"; };
+		CEA24BE923C130CD00A6DB11 /* ALTDeviceManager+Installation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ALTDeviceManager+Installation.swift"; sourceTree = "<group>"; };
+		CEA24BEA23C130CD00A6DB11 /* ALTDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTDeviceManager.h; sourceTree = "<group>"; };
+		CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Conveniences.swift"; sourceTree = "<group>"; };
+		CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnisetteDataManager.swift; sourceTree = "<group>"; };
+		CEA6377523C3941200CEC7A9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CEA6377623C3941200CEC7A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEA6377723C3941200CEC7A9 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CEA6377923C3941200CEC7A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CEA6377A23C3941200CEC7A9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AltDeploy.entitlements; sourceTree = "<group>"; };
+		CEA6377C23C3941200CEC7A9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CEA6377D23C3941200CEC7A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEA6377E23C3941200CEC7A9 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CEA6377F23C3941200CEC7A9 /* apple.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apple.pem; sourceTree = "<group>"; };
+		CEA6378723C3944400CEC7A9 /* AltDeploy-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AltDeploy-Bridge.h"; sourceTree = "<group>"; };
+		CEBF417A23C2597E004338D2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CEBF417B23C2599C004338D2 /* SAMKeychainQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMKeychainQuery.h; sourceTree = "<group>"; };
+		CEBF417C23C2599C004338D2 /* SAMKeychainQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMKeychainQuery.m; sourceTree = "<group>"; };
+		CEBF417E23C259CA004338D2 /* SAMKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMKeychain.h; sourceTree = "<group>"; };
+		CEBF417F23C259CA004338D2 /* SAMKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMKeychain.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEA24A9623C10F8900A6DB11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE7AA86423C3B66B009EFA51 /* dependencies.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEA24A9023C10F8900A6DB11 = {
+			isa = PBXGroup;
+			children = (
+				CEBF417923C25963004338D2 /* SAMKeychain */,
+				CEA6378723C3944400CEC7A9 /* AltDeploy-Bridge.h */,
+				CEA24B7323C1278B00A6DB11 /* AltKit */,
+				CEA24BE723C130CD00A6DB11 /* AltServer */,
+				CEA6377423C3941200CEC7A9 /* AltDeploy */,
+				CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */,
+				CEA24B2D23C1234100A6DB11 /* AltSign */,
+				CEA24B9323C12A3100A6DB11 /* corecrypto */,
+				CE7AA85723C3B62A009EFA51 /* Dependencies */,
+				CEA24B8723C12A3100A6DB11 /* minizip */,
+				CEA24A9A23C10F8900A6DB11 /* Products */,
+				CEA24AB023C10FCD00A6DB11 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CEA24A9A23C10F8900A6DB11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24A9923C10F8900A6DB11 /* AltDeploy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEA24AB023C10FCD00A6DB11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AA85A23C3B652009EFA51 /* libimobiledevice.a */,
+				CE7AA86023C3B658009EFA51 /* libplist.a */,
+				CE7AA85C23C3B655009EFA51 /* libssl.a */,
+				CE7AA86223C3B65A009EFA51 /* libusbmuxd.a */,
+				CE7AA85E23C3B657009EFA51 /* libcrypto.a */,
+				CE7AA85823C3B630009EFA51 /* dependencies.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEA24B2D23C1234100A6DB11 /* AltSign */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24B2E23C1234100A6DB11 /* AltSign.h */,
+				CEA24B3823C1234100A6DB11 /* ALTSigner.h */,
+				CEA24B3923C1234100A6DB11 /* ALTSigner.mm */,
+				CEA24B3B23C1234100A6DB11 /* ALTCapabilities.m */,
+				CEA24B3C23C1234100A6DB11 /* ALTCapabilities.h */,
+				CEA24B3023C1234100A6DB11 /* ALTAppleAPI.m */,
+				CEA24B3123C1234100A6DB11 /* ALTAppleAPI+Authentication.m */,
+				CEA24B3223C1234100A6DB11 /* ALTAppleAPISession.m */,
+				CEA24B3323C1234100A6DB11 /* ALTAppleAPI.h */,
+				CEA24B3423C1234100A6DB11 /* ALTAppleAPI+Authentication.h */,
+				CEA24B3523C1234100A6DB11 /* ALTAppleAPI_Private.h */,
+				CEA24B3623C1234100A6DB11 /* ALTAppleAPISession.h */,
+				CEA24B4123C1234100A6DB11 /* ALTAccount.h */,
+				CEA24B4223C1234100A6DB11 /* ALTCertificateRequest.h */,
+				CEA24B4323C1234100A6DB11 /* ALTTeam.h */,
+				CEA24B4423C1234100A6DB11 /* ALTProvisioningProfile.h */,
+				CEA24B4523C1234100A6DB11 /* ALTCertificate.h */,
+				CEA24B4623C1234100A6DB11 /* ALTModel+Internal.h */,
+				CEA24B4723C1234100A6DB11 /* ALTDevice.m */,
+				CEA24B4823C1234100A6DB11 /* ALTAppGroup.m */,
+				CEA24B4923C1234100A6DB11 /* ALTAnisetteData.h */,
+				CEA24B4A23C1234100A6DB11 /* ALTAppID.m */,
+				CEA24B4B23C1234100A6DB11 /* ALTTeam.m */,
+				CEA24B4C23C1234100A6DB11 /* ALTCertificateRequest.m */,
+				CEA24B4D23C1234100A6DB11 /* ALTAccount.m */,
+				CEA24B4E23C1234100A6DB11 /* ALTDevice.h */,
+				CEA24B4F23C1234100A6DB11 /* ALTAppGroup.h */,
+				CEA24B5023C1234100A6DB11 /* ALTCertificate.m */,
+				CEA24B5123C1234100A6DB11 /* ALTProvisioningProfile.m */,
+				CEA24B5223C1234100A6DB11 /* ALTAppID.h */,
+				CEA24B5323C1234100A6DB11 /* ALTAnisetteData.m */,
+				CEA24B5423C1234100A6DB11 /* ALTApplication.mm */,
+				CEA24B5A23C1234100A6DB11 /* NSFileManager+Apps.m */,
+				CEA24B5B23C1234100A6DB11 /* NSError+ALTErrors.h */,
+				CEA24B5C23C1234100A6DB11 /* NSError+ALTErrors.m */,
+				CEA24B5D23C1234100A6DB11 /* NSFileManager+Apps.h */,
+				CEA24B5523C1234100A6DB11 /* ALTApplication.h */,
+				CEA24B5623C1234100A6DB11 /* ldid */,
+			);
+			path = AltSign;
+			sourceTree = "<group>";
+		};
+		CEA24B5623C1234100A6DB11 /* ldid */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24B5723C1234100A6DB11 /* ldid.hpp */,
+				CEA24B5823C1234100A6DB11 /* ldid.cpp */,
+			);
+			path = ldid;
+			sourceTree = "<group>";
+		};
+		CEA24B7323C1278B00A6DB11 /* AltKit */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */,
+				CEA24B7523C1278B00A6DB11 /* AltKit.h */,
+				CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */,
+				CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */,
+			);
+			path = AltKit;
+			sourceTree = "<group>";
+		};
+		CEA24B8723C12A3100A6DB11 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24B8823C12A3100A6DB11 /* unzip.c */,
+				CEA24B8923C12A3100A6DB11 /* zip.c */,
+				CEA24B8A23C12A3100A6DB11 /* ioapi.c */,
+				CEA24B8B23C12A3100A6DB11 /* mztools.c */,
+				CEA24B8C23C12A3100A6DB11 /* crypt.h */,
+				CEA24B8D23C12A3100A6DB11 /* zip.h */,
+				CEA24B8E23C12A3100A6DB11 /* unzip.h */,
+				CEA24B8F23C12A3100A6DB11 /* mztools.h */,
+				CEA24B9023C12A3100A6DB11 /* ioapi.h */,
+				CEA24B9123C12A3100A6DB11 /* minizip.c */,
+				CEA24B9223C12A3100A6DB11 /* miniunz.c */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		CEA24B9323C12A3100A6DB11 /* corecrypto */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24B9423C12A3100A6DB11 /* cctest.h */,
+				CEA24B9523C12A3100A6DB11 /* cczp.h */,
+				CEA24B9623C12A3100A6DB11 /* ccmd4.h */,
+				CEA24B9723C12A3100A6DB11 /* ccrng_priv.h */,
+				CEA24B9823C12A3100A6DB11 /* ccrng_sequence.h */,
+				CEA24B9923C12A3100A6DB11 /* ccz.h */,
+				CEA24B9A23C12A3100A6DB11 /* ccaes.h */,
+				CEA24B9B23C12A3100A6DB11 /* cchkdf.h */,
+				CEA24B9C23C12A3100A6DB11 /* ccec.h */,
+				CEA24B9D23C12A3100A6DB11 /* cc_config.h */,
+				CEA24B9E23C12A3100A6DB11 /* ccsrp.h */,
+				CEA24B9F23C12A3100A6DB11 /* ccrng_ecfips_test.h */,
+				CEA24BA023C12A3100A6DB11 /* ccrng_drbg.h */,
+				CEA24BA123C12A3100A6DB11 /* cc_priv.h */,
+				CEA24BA223C12A3100A6DB11 /* fipspost.h */,
+				CEA24BA323C12A3100A6DB11 /* ccec25519.h */,
+				CEA24BA423C12A3100A6DB11 /* ccdh_priv.h */,
+				CEA24BA523C12A3100A6DB11 /* ccder_rsa.h */,
+				CEA24BA623C12A3100A6DB11 /* ccrc4.h */,
+				CEA24BA723C12A3100A6DB11 /* ccdes.h */,
+				CEA24BA823C12A3100A6DB11 /* ccrsa.h */,
+				CEA24BA923C12A3100A6DB11 /* cc_debug.h */,
+				CEA24BAA23C12A3100A6DB11 /* ccblowfish.h */,
+				CEA24BAB23C12A3100A6DB11 /* ccchacha20poly1305_priv.h */,
+				CEA24BAC23C12A3100A6DB11 /* cczp_priv.h */,
+				CEA24BAD23C12A3100A6DB11 /* ccdrbg_impl.h */,
+				CEA24BAE23C12A3100A6DB11 /* ccprime.h */,
+				CEA24BAF23C12A3100A6DB11 /* ccrng_pbkdf2_prng.h */,
+				CEA24BB023C12A3100A6DB11 /* ccdigest_priv.h */,
+				CEA24BB123C12A3100A6DB11 /* ccnistkdf.h */,
+				CEA24BB223C12A3100A6DB11 /* ccasn1.h */,
+				CEA24BB323C12A3100A6DB11 /* ccripemd.h */,
+				CEA24BB423C12A3100A6DB11 /* ccchacha20poly1305.h */,
+				CEA24BB523C12A3100A6DB11 /* cc.h */,
+				CEA24BB623C12A3100A6DB11 /* ccder_priv.h */,
+				CEA24BB723C12A3100A6DB11 /* ccder_decode_eckey.h */,
+				CEA24BB823C12A3100A6DB11 /* ccrsa_priv.h */,
+				CEA24BB923C12A3100A6DB11 /* ccdh_gp.h */,
+				CEA24BBA23C12A3100A6DB11 /* ccrng_rsafips_test.h */,
+				CEA24BBB23C12A3100A6DB11 /* ccperf.h */,
+				CEA24BBC23C12A3100A6DB11 /* ccder_encode_eckey.h */,
+				CEA24BBD23C12A3100A6DB11 /* ccn_priv.h */,
+				CEA24BBE23C12A3100A6DB11 /* ccz_priv.h */,
+				CEA24BBF23C12A3100A6DB11 /* ccdrbg_factory.h */,
+				CEA24BC023C12A3100A6DB11 /* ccansikdf.h */,
+				CEA24BC123C12A3100A6DB11 /* ccmd2.h */,
+				CEA24BC223C12A3100A6DB11 /* ccsha1.h */,
+				CEA24BC323C12A3100A6DB11 /* ccecies.h */,
+				CEA24BC423C12A3100A6DB11 /* cc_memory.h */,
+				CEA24BC523C12A3100A6DB11 /* ccwrap.h */,
+				CEA24BC623C12A3100A6DB11 /* ccmode_factory.h */,
+				CEA24BC723C12A3100A6DB11 /* ccrc2.h */,
+				CEA24BC823C12A3100A6DB11 /* ccsrp_gp.h */,
+				CEA24BC923C12A3100A6DB11 /* cccmac.h */,
+				CEA24BCA23C12A3100A6DB11 /* ccn.h */,
+				CEA24BCB23C12A3100A6DB11 /* ccmd5.h */,
+				CEA24BCC23C12A3100A6DB11 /* ccrng_system.h */,
+				CEA24BCD23C12A3100A6DB11 /* ccmode.h */,
+				CEA24BCE23C12A3100A6DB11 /* ccec_priv.h */,
+				CEA24BCF23C12A3100A6DB11 /* ccrng_test.h */,
+				CEA24BD023C12A3100A6DB11 /* cchmac.h */,
+				CEA24BD123C12A3100A6DB11 /* ccpad.h */,
+				CEA24BD223C12A3100A6DB11 /* ccecies_priv.h */,
+				CEA24BD323C12A3100A6DB11 /* ccsha2.h */,
+				CEA24BD423C12A3100A6DB11 /* ccpbkdf2.h */,
+				CEA24BD523C12A3100A6DB11 /* ccec25519_priv.h */,
+				CEA24BD623C12A3100A6DB11 /* cc_runtime_config.h */,
+				CEA24BD723C12A3100A6DB11 /* ccdh.h */,
+				CEA24BD823C12A3100A6DB11 /* ccmode_impl.h */,
+				CEA24BD923C12A3100A6DB11 /* ccmode_siv.h */,
+				CEA24BDA23C12A3100A6DB11 /* ccdrbg.h */,
+				CEA24BDB23C12A3100A6DB11 /* ccmode_siv_priv.h */,
+				CEA24BDC23C12A3100A6DB11 /* cccast.h */,
+				CEA24BDD23C12A3100A6DB11 /* ccdigest.h */,
+				CEA24BDE23C12A3100A6DB11 /* ccder.h */,
+				CEA24BDF23C12A3100A6DB11 /* ccrng.h */,
+			);
+			path = corecrypto;
+			sourceTree = "<group>";
+		};
+		CEA24BE723C130CD00A6DB11 /* AltServer */ = {
+			isa = PBXGroup;
+			children = (
+				CEA24BE823C130CD00A6DB11 /* ALTDeviceManager.mm */,
+				CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */,
+				CEA24BE923C130CD00A6DB11 /* ALTDeviceManager+Installation.swift */,
+				CEA24BEA23C130CD00A6DB11 /* ALTDeviceManager.h */,
+			);
+			path = AltServer;
+			sourceTree = "<group>";
+		};
+		CEA6377423C3941200CEC7A9 /* AltDeploy */ = {
+			isa = PBXGroup;
+			children = (
+				CEA6377523C3941200CEC7A9 /* AppDelegate.h */,
+				CEA6377623C3941200CEC7A9 /* Assets.xcassets */,
+				CEA6377723C3941200CEC7A9 /* ViewController.m */,
+				CEA6377823C3941200CEC7A9 /* Main.storyboard */,
+				CEA6377A23C3941200CEC7A9 /* main.m */,
+				CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */,
+				CEA6377C23C3941200CEC7A9 /* AppDelegate.m */,
+				CEA6377D23C3941200CEC7A9 /* Info.plist */,
+				CEA6377E23C3941200CEC7A9 /* ViewController.h */,
+				CEA6377F23C3941200CEC7A9 /* apple.pem */,
+			);
+			path = AltDeploy;
+			sourceTree = "<group>";
+		};
+		CEBF417923C25963004338D2 /* SAMKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				CEBF417A23C2597E004338D2 /* LICENSE */,
+				CEBF417B23C2599C004338D2 /* SAMKeychainQuery.h */,
+				CEBF417C23C2599C004338D2 /* SAMKeychainQuery.m */,
+				CEBF417E23C259CA004338D2 /* SAMKeychain.h */,
+				CEBF417F23C259CA004338D2 /* SAMKeychain.m */,
+			);
+			path = SAMKeychain;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEA24A9823C10F8900A6DB11 /* AltDeploy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEA24AAD23C10F8A00A6DB11 /* Build configuration list for PBXNativeTarget "AltDeploy" */;
+			buildPhases = (
+				CEA24A9523C10F8900A6DB11 /* Sources */,
+				CEA24A9623C10F8900A6DB11 /* Frameworks */,
+				CEA24A9723C10F8900A6DB11 /* Resources */,
+				CEA24AB723C1123F00A6DB11 /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AltDeploy;
+			productName = "alt-impactor";
+			productReference = CEA24A9923C10F8900A6DB11 /* AltDeploy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEA24A9123C10F8900A6DB11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = PixelOmer;
+				TargetAttributes = {
+					CEA24A9823C10F8900A6DB11 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = CEA24A9423C10F8900A6DB11 /* Build configuration list for PBXProject "AltDeploy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CEA24A9023C10F8900A6DB11;
+			productRefGroup = CEA24A9A23C10F8900A6DB11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEA24A9823C10F8900A6DB11 /* AltDeploy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEA24A9723C10F8900A6DB11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA6378523C3941200CEC7A9 /* Info.plist in Resources */,
+				CEA6378223C3941200CEC7A9 /* Main.storyboard in Resources */,
+				CEA6378023C3941200CEC7A9 /* Assets.xcassets in Resources */,
+				CEA6378623C3941200CEC7A9 /* apple.pem in Resources */,
+				CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEA24A9523C10F8900A6DB11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA24B5E23C1234100A6DB11 /* ALTAppleAPI.m in Sources */,
+				CEA24B6B23C1234100A6DB11 /* ALTProvisioningProfile.m in Sources */,
+				CEA24BE323C12A3100A6DB11 /* mztools.c in Sources */,
+				CEA24B7023C1234100A6DB11 /* NSError+ALTErrors.m in Sources */,
+				CEA24B6A23C1234100A6DB11 /* ALTCertificate.m in Sources */,
+				CEA24B6523C1234100A6DB11 /* ALTAppGroup.m in Sources */,
+				CEA24BE023C12A3100A6DB11 /* unzip.c in Sources */,
+				CEA24B6F23C1234100A6DB11 /* NSFileManager+Apps.m in Sources */,
+				CEA24B6E23C1234100A6DB11 /* ldid.cpp in Sources */,
+				CEA24BFB23C133C500A6DB11 /* AnisetteDataManager.swift in Sources */,
+				CEA6378123C3941200CEC7A9 /* ViewController.m in Sources */,
+				CEA24BE523C12A3100A6DB11 /* miniunz.c in Sources */,
+				CEA24BE423C12A3100A6DB11 /* minizip.c in Sources */,
+				CEA24B6723C1234100A6DB11 /* ALTTeam.m in Sources */,
+				CEA6378423C3941200CEC7A9 /* AppDelegate.m in Sources */,
+				CEA24B6423C1234100A6DB11 /* ALTDevice.m in Sources */,
+				CEA24B6623C1234100A6DB11 /* ALTAppID.m in Sources */,
+				CEA24B6D23C1234100A6DB11 /* ALTApplication.mm in Sources */,
+				CEA24BEB23C130CD00A6DB11 /* ALTDeviceManager.mm in Sources */,
+				CEA24BE223C12A3100A6DB11 /* ioapi.c in Sources */,
+				CEA24B6023C1234100A6DB11 /* ALTAppleAPISession.m in Sources */,
+				CEA24B6823C1234100A6DB11 /* ALTCertificateRequest.m in Sources */,
+				CEA24B6223C1234100A6DB11 /* ALTCapabilities.m in Sources */,
+				CEA24B6C23C1234100A6DB11 /* ALTAnisetteData.m in Sources */,
+				CEA24BE123C12A3100A6DB11 /* zip.c in Sources */,
+				CEA24B7723C1278B00A6DB11 /* NSError+ALTServerError.m in Sources */,
+				CEA24BF723C132E000A6DB11 /* Result+Conveniences.swift in Sources */,
+				CEA24BEC23C130CD00A6DB11 /* ALTDeviceManager+Installation.swift in Sources */,
+				CEA24B6123C1234100A6DB11 /* ALTSigner.mm in Sources */,
+				CEBF418023C259CA004338D2 /* SAMKeychain.m in Sources */,
+				CEBF417D23C2599C004338D2 /* SAMKeychainQuery.m in Sources */,
+				CEA24B5F23C1234100A6DB11 /* ALTAppleAPI+Authentication.m in Sources */,
+				CEA6378323C3941200CEC7A9 /* main.m in Sources */,
+				CEA24B6923C1234100A6DB11 /* ALTAccount.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CEA6377823C3941200CEC7A9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEA6377923C3941200CEC7A9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CEA24AAB23C10F8A00A6DB11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CEA24AAC23C10F8A00A6DB11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CEA24AAE23C10F8A00A6DB11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AltDeploy/AltDeploy.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"/usr/local/opt/openssl@1.1/include",
+					.,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/AltDeploy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/libusbmuxd/HEAD-563cd25/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.1d/lib",
+					/usr/local/Cellar/libplist/2.1.0/lib,
+					"/usr/local/Cellar/libimobiledevice/HEAD-d04f8ff_6/lib",
+					"$(PROJECT_DIR)/Objects",
+					"$(PROJECT_DIR)/Dependencies",
+					"$(PROJECT_DIR)/Dependencies/Individual",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_CFLAGS = "-Dunix=1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AltDeploy-Bridge.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		CEA24AAF23C10F8A00A6DB11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AltDeploy/AltDeploy.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"/usr/local/opt/openssl@1.1/include",
+					.,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/AltDeploy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/libusbmuxd/HEAD-563cd25/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.1d/lib",
+					/usr/local/Cellar/libplist/2.1.0/lib,
+					"/usr/local/Cellar/libimobiledevice/HEAD-d04f8ff_6/lib",
+					"$(PROJECT_DIR)/Objects",
+					"$(PROJECT_DIR)/Dependencies",
+					"$(PROJECT_DIR)/Dependencies/Individual",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_CFLAGS = "-Dunix=1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AltDeploy-Bridge.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEA24A9423C10F8900A6DB11 /* Build configuration list for PBXProject "AltDeploy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA24AAB23C10F8A00A6DB11 /* Debug */,
+				CEA24AAC23C10F8A00A6DB11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEA24AAD23C10F8A00A6DB11 /* Build configuration list for PBXNativeTarget "AltDeploy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA24AAE23C10F8A00A6DB11 /* Debug */,
+				CEA24AAF23C10F8A00A6DB11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEA24A9123C10F8900A6DB11 /* Project object */;
+}
