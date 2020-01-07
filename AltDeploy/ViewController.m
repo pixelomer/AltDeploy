@@ -263,7 +263,7 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 - (void)fetchUtilities {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSArray<NSMenuItem *> * __block menuItems = nil;
-		NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.pixelomer.com/ALTImpactor/v0/utilities"]];
+		NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.pixelomer.com/ALTImpactor/v1/utilities"]];
 		if (data) {
 			NSError *error;
 			NSArray *array = [NSJSONSerialization

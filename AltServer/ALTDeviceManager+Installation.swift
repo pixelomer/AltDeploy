@@ -203,7 +203,10 @@ extension ALTDeviceManager
 			}
 		}
 		else {
-			let downloadTask = URLSession.shared.downloadTask(with: applicationURL) { (fileURL, response, error) in
+			let request = NSMutableURLRequest.init(url: applicationURL)
+			request.addValue(applicationURL.host!, forHTTPHeaderField: "Referer")
+			let finalRequest = request.copy() as! URLRequest
+			let downloadTask = URLSession.shared.downloadTask(with: finalRequest) { (fileURL, response, error) in
 				do
 				{
 					let (fileURL, _) = try Result((fileURL, response), error).get()
