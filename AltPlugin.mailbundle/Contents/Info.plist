@@ -33,17 +33,21 @@
 	<key>DTSDKBuild</key>
 	<string>19A547</string>
 	<key>DTSDKName</key>
-	<string>macosx10.15</string>
+	<string>macosx10.11</string>
 	<key>DTXcode</key>
 	<string>1120</string>
 	<key>DTXcodeBuild</key>
 	<string>11B41</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.14</string>
+	<string>10.11</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Riley Testut. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>ALTPluginService</string>
+	<key>Supported10.13PluginCompatibilityUUIDs</key>
+	<array>
+		<string>C86CD990-4660-4E36-8CDA-7454DEB2E199</string>
+	</array>
 	<key>Supported10.14PluginCompatibilityUUIDs</key>
 	<array>
 		<string># UUIDs for versions from 10.12 to 99.99.99</string>
@@ -57,8 +61,8 @@
 		<string>21560BD9-A3CC-482E-9B99-95B7BF61EDC1</string>
 		<string># For mail version 11.0 (3441.0.1) on OS X Version 10.13 (build 17A315i)</string>
 		<string>C86CD990-4660-4E36-8CDA-7454DEB2E199</string>
-		<string># For mail version 12.0 (3445.100.39) on OS X Version 10.14.1 (build 18B45d)</string>
-		<string>A4343FAF-AE18-40D0-8A16-DFAE481AF9C1</string>
+		<string># For mail version 11.5 (3445.9.1) on OS X Version 10.13.6 (build 17G65)</string>
+		<string>C86CD990-4660-4E36-8CDA-7454DEB2E199</string>
 		<string># For mail version 13.0 (3594.4.2) on OS X Version 10.15 (build 19A558d)</string>
 		<string>6EEA38FB-1A0B-469B-BB35-4C2E0EEA9053</string>
 	</array>
