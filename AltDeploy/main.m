@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ViewController.h"
-#import <minizip/unzip.h>
 #import <spawn.h>
 
 int main(int argc, const char * argv[]) {

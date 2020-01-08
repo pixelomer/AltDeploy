@@ -105,7 +105,7 @@ extension ALTDeviceManager
 														progress.completedUnitCount += 1
 														progress.localizedDescription = "Registering the App ID...";
                                                         
-                                                        self.registerAppID(name: "AltStore", identifier: "com.rileytestut.AltStore", team: team, session: session) { (result) in
+                                                        self.registerAppID(name: "ALT- \(application.name)", identifier: application.bundleIdentifier, team: team, session: session) { (result) in
                                                             do
                                                             {
                                                                 let appID = try result.get()
@@ -411,19 +411,20 @@ To prevent this from happening, feel free to try again with another Apple ID to 
     
     func registerAppID(name appName: String, identifier: String, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void)
     {
-        let bundleID = "com.\(team.identifier).\(identifier)"
-        
         ALTAppleAPI.shared.fetchAppIDs(for: team, session: session) { (appIDs, error) in
             do
             {
                 let appIDs = try Result(appIDs, error).get()
                 
-                if let appID = appIDs.first(where: { $0.bundleIdentifier == bundleID })
+                if let appID = appIDs.first(where: { $0.bundleIdentifier.hasSuffix(".\(identifier)") })
                 {
                     completionHandler(.success(appID))
                 }
                 else
                 {
+                    let uuid = UUID.init().uuidString;
+                    let bundleID = "ALT-\(uuid).\(identifier)"
+                    
                     ALTAppleAPI.shared.addAppID(withName: appName, bundleIdentifier: bundleID, team: team, session: session) { (appID, error) in
                         completionHandler(Result(appID, error))
                     }
