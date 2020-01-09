@@ -24,6 +24,13 @@
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Add Apple ID" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Manage Apple ID" id="0A1-oA-FI5">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Register Device Automatically" state="on" id="GzR-FN-7A8">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="JiP-f5-Hik"/>
                                         <menuItem title="Install Mail Plugin" id="T3U-sR-0yf">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
@@ -313,11 +320,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="AltDeploy Help" keyEquivalent="?" id="FKE-Sm-Kum">
-                                            <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="AltDeploy Help" keyEquivalent="?" id="FKE-Sm-Kum"/>
                                     </items>
                                 </menu>
                             </menuItem>

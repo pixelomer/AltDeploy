@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSArray<ALTDevice *> *connectedDevices;
 @property (nonatomic, readonly) NSArray<ALTDevice *> *availableDevices;
+@property (nonatomic, assign) BOOL registerDeviceAutomatically;
 
 - (NSProgress *)installAppAtURL:(NSURL *)fileURL toDeviceWithUDID:(NSString *)udid progress:(NSProgress *)progress completionHandler:(void (^)(BOOL success, NSError *_Nullable error))completionHandler;
 

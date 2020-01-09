@@ -37,7 +37,8 @@
     NSArray <NSURL *> *utilityURLs;
     NSURL *selectedFileURL;
     NSURL *selectedUtilityURL;
-    NSMenuItem *pluginMenuItem;
+    NSMenuItem *registerDeviceMenuItem;
+    NSMenuItem *mailPluginMenuItem;
 }
 
 static NSString *defaultKeyEquivalent;
@@ -58,6 +59,147 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
         self->_progressIndicator.doubleValue = object.fractionCompleted;
     }];
 }
+
+#pragma mark - Life Cycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{
+        @"RegisterDeviceAutomatically": @(YES)
+    }];
+    
+    NSMenuItem *item0 = NSApp.mainMenu.itemArray[0].submenu.itemArray[2];
+    item0.action = @selector(didClickAddAppleID:);
+    item0.target = self;
+    
+    NSMenuItem *item1 = NSApp.mainMenu.itemArray[0].submenu.itemArray[3];
+    item1.action = @selector(didClickKeychainAccess:);
+    item1.target = self;
+    
+    registerDeviceMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[4];
+    registerDeviceMenuItem.action = @selector(didClickRegisterDeviceAutomatically:);
+    registerDeviceMenuItem.target = self;
+    registerDeviceMenuItem.state = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegisterDeviceAutomatically"] ? NSControlStateValueOn : NSControlStateValueOff;
+    
+    NSMenuItem *itemHelp = NSApp.mainMenu.itemArray[4].submenu.itemArray[0];
+    itemHelp.action = @selector(showHelp:);
+    itemHelp.target = self;
+    
+    mailPluginMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[6];
+    mailPluginMenuItem.action = @selector(didClickInstallPlugin:);
+    mailPluginMenuItem.target = self;
+    
+    [self reloadMainMenu];
+    
+    _startButton.action = @selector(didClickStart:);
+    _startButton.target = self;
+    
+    _actionButton.action = @selector(didChooseAction:);
+    _actionButton.target = self;
+    
+    ((ALTDragDropView *)self.view).dropDelegate = self;
+    
+    defaultKeyEquivalent = [_actionButton itemAtIndex:0].keyEquivalent.copy;
+    
+    accounts = @[];
+    devices = @[];
+    
+    [self didChooseAction:self->_actionButton];
+    [self refreshAppleIDs];
+    [self fetchUtilities];
+    
+    idevice_error_t error;
+    if ((error = idevice_event_subscribe(&handle_idevice_event, (__bridge void *)self)) != IDEVICE_E_SUCCESS) {
+        [NSException raise:NSInternalInconsistencyException format:@"Failed to subscribe to the iDevice events (%d)", error];
+    }
+}
+
+- (void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+    // Update the view, if already loaded.
+}
+
+#pragma mark - ALTDragDropViewDelegate
+
+- (void)dragDropView:(ALTDragDropView *)view droppedWithFilenames:(NSArray <NSString *> *)filenames {
+    if (filenames.count == 1) {
+        self.actionButton.enabled = YES;
+        self->selectedFileURL = [NSURL fileURLWithPath:filenames.firstObject];
+        [self didChooseAction:self.actionButton];
+    }
+}
+
+#pragma mark - Menu Actions
+
+- (void)didClickAddAppleID:(NSMenuItem *)sender {
+    [self askForAppleID];
+}
+
+- (void)didClickKeychainAccess:(NSMenuItem *)sender {
+    NSURL *appURL = [NSURL fileURLWithPath:@"/System/Applications/Utilities/Keychain Access.app" isDirectory:YES];
+    [[NSWorkspace sharedWorkspace] openURL:appURL];
+}
+
+- (void)didClickRegisterDeviceAutomatically:(NSMenuItem *)sender {
+    [registerDeviceMenuItem setState:registerDeviceMenuItem.state == NSControlStateValueOn ? NSControlStateValueOff : NSControlStateValueOn];
+    [[NSUserDefaults standardUserDefaults] setBool:(registerDeviceMenuItem.state == NSControlStateValueOn) forKey:@"RegisterDeviceAutomatically"];
+}
+
+- (void)showHelp:(NSMenuItem *)sender {
+    NSURL *helpFile = [NSURL URLWithString:@"https://github.com/pixelomer/AltDeploy"];
+    [[NSWorkspace sharedWorkspace] openURL:helpFile];
+}
+
+- (void)reloadMainMenu {
+    mailPluginMenuItem.title = [
+                            ([self.class isPluginInstalled] ? @"Remove" : @"Install")
+                            stringByAppendingString:@" Mail Plugin"
+                            ];
+}
+
+#pragma mark - Mail Plugin
+
++ (NSString *)altPluginPath {
+    return [NSBundle.mainBundle pathForResource:@"AltPlugin" ofType:@"mailbundle"];
+}
+
++ (NSString *)mailBundlesPath {
+    return @"/Library/Mail/Bundles";
+}
+
++ (BOOL)isPluginInstalled {
+    BOOL isDir;
+    return ([NSFileManager.defaultManager fileExistsAtPath:[[self mailBundlesPath] stringByAppendingPathComponent:[self altPluginPath].lastPathComponent] isDirectory:&isDir] && isDir);
+}
+
+- (void)beginMailPluginInstallation {
+    BOOL isInstalling = ![self.class isPluginInstalled];
+    NSString *script = [NSString stringWithFormat:
+                        @"do shell script \"%@ -i\" with administrator privileges",
+                        NSBundle.mainBundle.executablePath
+                        ];
+    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:script];
+    NSAlert *alert = [NSAlert new];
+    [alert addButtonWithTitle:@"OK"];
+    NSDictionary *error;
+    if ([appleScript executeAndReturnError:&error]) {
+        alert.messageText = @"Success";
+        if (isInstalling) {
+            alert.informativeText = @"The mail plugin is now installed. To enable this plugin:\n1) Restart the mail app\n2) In mail preferences, press \"Manage Plug-ins...\"\n3) Enable \"AltPlugin.mailbundle\"\n4) Press \"Apply and Restart Mail\"\nThis application relies on this plugin so this plugin must be enabled. It is also necessary to keep the Mail application open while AltDeploy is running.";
+        }
+        else {
+            alert.informativeText = @"The mail plugin was uninstalled successfully.";
+        }
+    }
+    else {
+        alert.messageText = @"Failure";
+        alert.informativeText = error.description;
+    }
+    [alert runModal];
+    [self reloadMainMenu];
+}
+
+#pragma mark - Apple ID
 
 - (void)askForAppleID {
     ALTAddAppleIDViewController *vc = (ALTAddAppleIDViewController *)[[NSStoryboard storyboardWithName:@"Main" bundle:NSBundle.mainBundle] instantiateControllerWithIdentifier:@"appleid"];
@@ -92,32 +234,7 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     [self beginMailPluginInstallation];
 }
 
-- (void)beginMailPluginInstallation {
-    BOOL isInstalling = ![self.class isPluginInstalled];
-    NSString *script = [NSString stringWithFormat:
-                        @"do shell script \"%@ -i\" with administrator privileges",
-                        NSBundle.mainBundle.executablePath
-                        ];
-    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:script];
-    NSAlert *alert = [NSAlert new];
-    [alert addButtonWithTitle:@"OK"];
-    NSDictionary *error;
-    if ([appleScript executeAndReturnError:&error]) {
-        alert.messageText = @"Success";
-        if (isInstalling) {
-            alert.informativeText = @"The mail plugin is now installed. To enable this plugin:\n1) Restart the mail app\n2) In mail preferences, press \"Manage Plug-ins...\"\n3) Enable \"AltPlugin.mailbundle\"\n4) Press \"Apply and Restart Mail\"\nThis application relies on this plugin so this plugin must be enabled. It is also necessary to keep the Mail application open while AltDeploy is running.";
-        }
-        else {
-            alert.informativeText = @"The mail plugin was uninstalled successfully.";
-        }
-    }
-    else {
-        alert.messageText = @"Failure";
-        alert.informativeText = error.description;
-    }
-    [alert runModal];
-    [self reloadMainMenu];
-}
+#pragma mark - iOS Devices
 
 - (void)refreshDevices {
     char **udids;
@@ -172,100 +289,27 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     }];
 }
 
-- (void)setProgressVisible:(BOOL)visible {
-    [self.class dispatchIfNecessary:^{
-        self.progressContainerView.hidden = !visible;
-        self.accountButton.hidden = visible;
-        self.deviceButton.hidden = visible;
-        self.actionButton.hidden = visible;
-        self.startButton.hidden = visible;
+#pragma mark - File Actions
+
+- (void)chooseIPA {
+    [_actionButton.menu performActionForItemAtIndex:0];
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowedFileTypes = @[@"ipa"];
+    panel.allowsMultipleSelection = NO;
+    panel.canChooseDirectories = NO;
+    panel.canChooseFiles = YES;
+    panel.resolvesAliases = YES;
+    _actionButton.enabled = NO;
+    _startButton.enabled = NO;
+    [panel beginWithCompletionHandler:^(NSModalResponse result) {
+        [self.class dispatchIfNecessary:^{
+            self->_actionButton.enabled = YES;
+            if (result == NSModalResponseOK) {
+                self->selectedFileURL = panel.URLs.firstObject;
+            }
+            [self didChooseAction:self->_actionButton];
+        }];
     }];
-}
-
-- (void)didClickStart:(id)sender {
-    if (sender != _startButton) return;
-    if (![self.class isPluginInstalled]) {
-        NSAlert *alert = [NSAlert new];
-        alert.messageText = @"Missing Mail Plugin";
-        alert.informativeText = @"The mail plugin is necessary for this app to function. Install it now?";
-        [alert addButtonWithTitle:@"Install"];
-        [alert addButtonWithTitle:@"Cancel"];
-        NSModalResponse response = [alert runModal];
-        if (response == NSAlertFirstButtonReturn) {
-            [self beginMailPluginInstallation];
-        }
-        return;
-    }
-    if (_accountButton.indexOfSelectedItem < 0) {
-        [self askForAppleID];
-        return;
-    }
-    NSString *username = accounts[_accountButton.indexOfSelectedItem][kSAMKeychainAccountKey];
-    NSString *password = [[ALTAppleIDManager sharedManager] passwordOfAppleID:username];
-    if (!username || !password) {
-        [self askForAppleID];
-        return;
-    }
-    NSURL *fileURL = nil;
-    if (_actionButton.indexOfSelectedItem == 0) {
-        // Selecteed IPA
-        fileURL = selectedFileURL;
-    }
-    else if (_actionButton.indexOfSelectedItem > 2) {
-        // Utilitites
-        fileURL = selectedUtilityURL;
-    }
-    if (!fileURL) {
-        _startButton.enabled = NO;
-        return;
-    }
-    [self setProgressVisible:YES];
-    ALTDevice *device = [[ALTDevice alloc] initWithName:@"targetDevice" identifier:devices[_deviceButton.indexOfSelectedItem]];
-    NSProgress *progress = nil;
-    progress = [ALTDeviceManager.sharedManager
-                installApplicationTo:device
-                appleID:username
-                password:password
-                applicationURL:fileURL
-                completion:^(NSError * _Nullable error) {
-        [progress removeObserver:self forKeyPath:@"localizedDescription"];
-        if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSAlert *alert = [NSAlert alertWithError:error];
-                [alert addButtonWithTitle:@"Dismiss"];
-                [alert runModal];
-                [self setProgressVisible:NO];
-            });
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self setProgressVisible:NO];
-            });
-        }
-    }];
-    // FIXME: Race condition
-    // If the completionHandler is called before the addObserver call,
-    // the app will crash.
-    [self observeValueForKeyPath:nil ofObject:progress change:nil context:nil];
-    [progress
-     addObserver:self
-     forKeyPath:@"localizedDescription"
-     options:0
-     context:nil
-     ];
-}
-
-+ (NSString *)altPluginPath {
-    return [NSBundle.mainBundle pathForResource:@"AltPlugin" ofType:@"mailbundle"];
-}
-
-+ (NSString *)mailBundlesPath {
-    return @"/Library/Mail/Bundles";
-}
-
-+ (BOOL)isPluginInstalled {
-    BOOL isDir;
-    return ([NSFileManager.defaultManager fileExistsAtPath:[[self mailBundlesPath] stringByAppendingPathComponent:[self altPluginPath].lastPathComponent] isDirectory:&isDir] && isDir);
 }
 
 - (void)fetchUtilities {
@@ -320,31 +364,6 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     });
 }
 
-- (void)chooseIPA {
-    [_actionButton.menu performActionForItemAtIndex:0];
-    NSOpenPanel *panel = [NSOpenPanel openPanel];
-    panel.allowedFileTypes = @[@"ipa"];
-    panel.allowsMultipleSelection = NO;
-    panel.canChooseDirectories = NO;
-    panel.canChooseFiles = YES;
-    panel.resolvesAliases = YES;
-    _actionButton.enabled = NO;
-    _startButton.enabled = NO;
-    [panel beginWithCompletionHandler:^(NSModalResponse result) {
-        [self.class dispatchIfNecessary:^{
-            self->_actionButton.enabled = YES;
-            if (result == NSModalResponseOK) {
-                self->selectedFileURL = panel.URLs.firstObject;
-            }
-            [self didChooseAction:self->_actionButton];
-        }];
-    }];
-}
-
-- (void)didClickAppleID:(id)sender {
-    [self askForAppleID];
-}
-
 - (void)didChooseAction:(NSPopUpButton *)sender {
     if (sender != _actionButton) return;
     NSInteger index = _actionButton.indexOfSelectedItem;
@@ -380,52 +399,89 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     _startButton.enabled = (_deviceButton.menu.itemArray.count > 0 && _startButton.enabled);
 }
 
-- (void)reloadMainMenu {
-    pluginMenuItem.title = [
-                            ([self.class isPluginInstalled] ? @"Remove" : @"Install")
-                            stringByAppendingString:@" Mail Plugin"
-                            ];
+#pragma mark - Main Progress
+
+- (void)setProgressVisible:(BOOL)visible {
+    [self.class dispatchIfNecessary:^{
+        self.progressContainerView.hidden = !visible;
+        self.accountButton.hidden = visible;
+        self.deviceButton.hidden = visible;
+        self.actionButton.hidden = visible;
+        self.startButton.hidden = visible;
+    }];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSMenuItem *item = NSApp.mainMenu.itemArray[0].submenu.itemArray[2];
-    item.action = @selector(didClickAppleID:);
-    item.target = self;
-    pluginMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[3];
-    pluginMenuItem.action = @selector(didClickInstallPlugin:);
-    pluginMenuItem.target = self;
-    [self reloadMainMenu];
-    _startButton.target = self;
-    _startButton.action = @selector(didClickStart:);
-    _actionButton.action = @selector(didChooseAction:);
-    _actionButton.target = self;
-    ((ALTDragDropView *)self.view).dropDelegate = self;
-    defaultKeyEquivalent = [_actionButton itemAtIndex:0].keyEquivalent.copy;
-    accounts = @[];
-    devices = @[];
-    [self didChooseAction:self->_actionButton];
-    [self refreshAppleIDs];
-    [self fetchUtilities];
-    idevice_error_t error;
-    if ((error = idevice_event_subscribe(&handle_idevice_event, (__bridge void *)self)) != IDEVICE_E_SUCCESS) {
-        [NSException raise:NSInternalInconsistencyException format:@"Failed to subscribe to the iDevice events (%d)", error];
+- (void)didClickStart:(id)sender {
+    if (sender != _startButton) return;
+    if (![self.class isPluginInstalled]) {
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = @"Missing Mail Plugin";
+        alert.informativeText = @"The mail plugin is necessary for this app to function. Install it now?";
+        [alert addButtonWithTitle:@"Install"];
+        [alert addButtonWithTitle:@"Cancel"];
+        NSModalResponse response = [alert runModal];
+        if (response == NSAlertFirstButtonReturn) {
+            [self beginMailPluginInstallation];
+        }
+        return;
     }
-}
-
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-    // Update the view, if already loaded.
-}
-
-#pragma mark - ALTDragDropViewDelegate
-
-- (void)dragDropView:(ALTDragDropView *)view droppedWithFilenames:(NSArray <NSString *> *)filenames {
-    if (filenames.count == 1) {
-        self.actionButton.enabled = YES;
-        self->selectedFileURL = [NSURL fileURLWithPath:filenames.firstObject];
-        [self didChooseAction:self.actionButton];
+    if (_accountButton.indexOfSelectedItem < 0) {
+        [self askForAppleID];
+        return;
     }
+    NSString *username = accounts[_accountButton.indexOfSelectedItem][kSAMKeychainAccountKey];
+    NSString *password = [[ALTAppleIDManager sharedManager] passwordOfAppleID:username];
+    if (!username || !password) {
+        [self askForAppleID];
+        return;
+    }
+    NSURL *fileURL = nil;
+    if (_actionButton.indexOfSelectedItem == 0) {
+        // Selecteed IPA
+        fileURL = selectedFileURL;
+    }
+    else if (_actionButton.indexOfSelectedItem > 2) {
+        // Utilitites
+        fileURL = selectedUtilityURL;
+    }
+    if (!fileURL) {
+        _startButton.enabled = NO;
+        return;
+    }
+    [self setProgressVisible:YES];
+    ALTDeviceManager.sharedManager.registerDeviceAutomatically = registerDeviceMenuItem.state == NSControlStateValueOn;
+    ALTDevice *device = [[ALTDevice alloc] initWithName:@"targetDevice" identifier:devices[_deviceButton.indexOfSelectedItem]];
+    NSProgress *progress = nil;
+    progress = [ALTDeviceManager.sharedManager installApplicationTo:device
+                                                            appleID:username
+                                                           password:password
+                                                     applicationURL:fileURL
+                                                         completion:^(NSError * _Nullable error) {
+        [progress removeObserver:self forKeyPath:@"localizedDescription"];
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert addButtonWithTitle:@"Dismiss"];
+                [alert runModal];
+                [self setProgressVisible:NO];
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setProgressVisible:NO];
+            });
+        }
+    }];
+    // FIXME: Race condition
+    // If the completionHandler is called before the addObserver call,
+    // the app will crash.
+    [self observeValueForKeyPath:nil ofObject:progress change:nil context:nil];
+    [progress
+     addObserver:self
+     forKeyPath:@"localizedDescription"
+     options:0
+     context:nil
+     ];
 }
 
 @end

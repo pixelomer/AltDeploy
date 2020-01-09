@@ -14,6 +14,7 @@ enum InstallError: LocalizedError
 {
     case cancelled
     case noTeam
+    case noSuchDevice
     case missingPrivateKey
     case missingCertificate
     
@@ -21,9 +22,10 @@ enum InstallError: LocalizedError
         switch self
         {
         case .cancelled: return NSLocalizedString("The operation was cancelled.", comment: "")
-        case .noTeam: return "You are not a member of any developer teams."
-        case .missingPrivateKey: return "The developer certificate's private key could not be found."
-        case .missingCertificate: return "The developer certificate could not be found."
+        case .noTeam: return NSLocalizedString("You are not a member of any developer teams.", comment: "")
+        case .noSuchDevice: return NSLocalizedString("This device is not registered to your development team, turn on \"Register Device Automatically\" if necessary.", comment: "")
+        case .missingPrivateKey: return NSLocalizedString("The developer certificate's private key could not be found.", comment: "")
+        case .missingCertificate: return NSLocalizedString("The developer certificate could not be found.", comment: "")
         }
     }
 }
@@ -69,7 +71,7 @@ extension ALTDeviceManager
 								progress.completedUnitCount += 1
 								progress.localizedDescription = "Registering device...";
                                 
-                                self.register(device, team: team, session: session) { (result) in
+                                self.fetchOrRegister(device, team: team, session: session) { (result) in
                                     do
                                     {
                                         let device = try result.get()
@@ -459,7 +461,7 @@ To prevent this from happening, feel free to try again with another Apple ID to 
         }
     }
     
-    func register(_ device: ALTDevice, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTDevice, Error>) -> Void)
+    func fetchOrRegister(_ device: ALTDevice, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTDevice, Error>) -> Void)
     {
         ALTAppleAPI.shared.fetchDevices(for: team, session: session) { (devices, error) in
             do
@@ -472,8 +474,12 @@ To prevent this from happening, feel free to try again with another Apple ID to 
                 }
                 else
                 {
-                    ALTAppleAPI.shared.registerDevice(name: device.name, identifier: device.identifier, team: team, session: session) { (device, error) in
-                        completionHandler(Result(device, error))
+                    if self.registerDeviceAutomatically {
+                        ALTAppleAPI.shared.registerDevice(name: device.name, identifier: device.identifier, team: team, session: session) { (device, error) in
+                            completionHandler(Result(device, error))
+                        }
+                    } else {
+                        completionHandler(.failure(InstallError.noSuchDevice))
                     }
                 }
             }
@@ -506,7 +512,6 @@ To prevent this from happening, feel free to try again with another Apple ID to 
 				}
 				catch
 				{
-					print("Failed to install app", error)
 					completionHandler(.failure(error))
 				}
 			}
