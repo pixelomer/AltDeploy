@@ -289,11 +289,11 @@ extension ALTDeviceManager
                 {
                     DispatchQueue.main.sync {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString("Installing AltStore will revoke your iOS development certificate.", comment: "")
+                        alert.messageText = NSLocalizedString("Installing AltDeploy will revoke your iOS development certificate.", comment: "")
                         alert.informativeText = NSLocalizedString("""
 This will not affect apps you've submitted to the App Store, but may cause apps you've installed to your devices with Xcode to stop working until you reinstall them.
 
-To prevent this from happening, feel free to try again with another Apple ID to install AltStore.
+To prevent this from happening, feel free to try again with another Apple ID to install AltDeploy.
 """, comment: "")
                         
                         alert.addButton(withTitle: NSLocalizedString("Continue", comment: ""))
@@ -370,7 +370,7 @@ To prevent this from happening, feel free to try again with another Apple ID to 
                 }
                 else
                 {
-                    ALTAppleAPI.shared.addCertificate(machineName: "AltStore", to: team, session: session) { (certificate, error) in
+                    ALTAppleAPI.shared.addCertificate(machineName: "AltDeploy", to: team, session: session) { (certificate, error) in
                         do
                         {
                             let certificate = try Result(certificate, error).get()
