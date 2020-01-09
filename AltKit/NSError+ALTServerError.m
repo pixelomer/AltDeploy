@@ -33,7 +33,7 @@ NSErrorDomain const AltServerInstallationErrorDomain = @"com.rileytestut.AltServ
             return NSLocalizedString(@"An unknown error occured.", @"");
             
         case ALTServerErrorConnectionFailed:
-            return NSLocalizedString(@"Could not connect to device.", @"");
+            return NSLocalizedString(@"Could not connect to device. Make sure you trusted this computer on your device.", @"");
             
         case ALTServerErrorLostConnection:
             return NSLocalizedString(@"Lost connection to device.", @"");
@@ -54,7 +54,7 @@ NSErrorDomain const AltServerInstallationErrorDomain = @"com.rileytestut.AltServ
             return NSLocalizedString(@"You have reached the limit of 3 apps per device.", @"");
             
         case ALTServerErrorUnsupportediOSVersion:
-            return NSLocalizedString(@"Unsupported iOS version", @"");
+            return NSLocalizedString(@"This app does not support your device.", @"");
             
         case ALTServerErrorUnknownRequest:
             return NSLocalizedString(@"This app does not support this request.", @"");

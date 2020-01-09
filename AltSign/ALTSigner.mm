@@ -201,6 +201,7 @@ std::string CertificatesContent(ALTCertificate *altCertificate)
             }
             
             return profiles.firstObject;
+            // Original code: return nil
         };
         
         NSError * (^prepareApp)(ALTApplication *) = ^NSError *(ALTApplication *app) {
