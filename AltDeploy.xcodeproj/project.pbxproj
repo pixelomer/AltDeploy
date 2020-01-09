@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */ = {isa = PBXBuildFile; fileRef = CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */; };
-		CE7AA86423C3B66B009EFA51 /* dependencies.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7AA85823C3B630009EFA51 /* dependencies.a */; };
+		CE77230B23C76FDC0000C344 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230A23C76FDC0000C344 /* libcrypto.a */; };
+		CE77230D23C76FDE0000C344 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230C23C76FDE0000C344 /* libimobiledevice.a */; };
+		CE77230F23C76FE10000C344 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230E23C76FE10000C344 /* libplist.a */; };
+		CE77231123C76FE30000C344 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77231023C76FE30000C344 /* libssl.a */; };
+		CE77231323C76FE50000C344 /* libusbmuxd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77231223C76FE50000C344 /* libusbmuxd.a */; };
 		CEA24B5E23C1234100A6DB11 /* ALTAppleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3023C1234100A6DB11 /* ALTAppleAPI.m */; };
 		CEA24B5F23C1234100A6DB11 /* ALTAppleAPI+Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3123C1234100A6DB11 /* ALTAppleAPI+Authentication.m */; };
 		CEA24B6023C1234100A6DB11 /* ALTAppleAPISession.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B3223C1234100A6DB11 /* ALTAppleAPISession.m */; };
@@ -67,13 +71,12 @@
 
 /* Begin PBXFileReference section */
 		CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AltPlugin.mailbundle; sourceTree = "<group>"; };
+		CE77230A23C76FDC0000C344 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/libcrypto.a; sourceTree = "<group>"; };
+		CE77230C23C76FDE0000C344 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Dependencies/libimobiledevice.a; sourceTree = "<group>"; };
+		CE77230E23C76FE10000C344 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = Dependencies/libplist.a; sourceTree = "<group>"; };
+		CE77231023C76FE30000C344 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Dependencies/libssl.a; sourceTree = "<group>"; };
+		CE77231223C76FE50000C344 /* libusbmuxd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libusbmuxd.a; path = Dependencies/libusbmuxd.a; sourceTree = "<group>"; };
 		CE7AA85723C3B62A009EFA51 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dependencies; sourceTree = "<group>"; };
-		CE7AA85823C3B630009EFA51 /* dependencies.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = dependencies.a; path = Dependencies/dependencies.a; sourceTree = "<group>"; };
-		CE7AA85A23C3B652009EFA51 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Dependencies/Individual/libimobiledevice.a; sourceTree = "<group>"; };
-		CE7AA85C23C3B655009EFA51 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Dependencies/Individual/libssl.a; sourceTree = "<group>"; };
-		CE7AA85E23C3B657009EFA51 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/Individual/libcrypto.a; sourceTree = "<group>"; };
-		CE7AA86023C3B658009EFA51 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = Dependencies/Individual/libplist.a; sourceTree = "<group>"; };
-		CE7AA86223C3B65A009EFA51 /* libusbmuxd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libusbmuxd.a; path = Dependencies/Individual/libusbmuxd.a; sourceTree = "<group>"; };
 		CEA24A9923C10F8900A6DB11 /* AltDeploy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AltDeploy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA24B2E23C1234100A6DB11 /* AltSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltSign.h; sourceTree = "<group>"; };
 		CEA24B3023C1234100A6DB11 /* ALTAppleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAppleAPI.m; sourceTree = "<group>"; };
@@ -238,7 +241,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE7AA86423C3B66B009EFA51 /* dependencies.a in Frameworks */,
+				CE77231123C76FE30000C344 /* libssl.a in Frameworks */,
+				CE77230B23C76FDC0000C344 /* libcrypto.a in Frameworks */,
+				CE77231323C76FE50000C344 /* libusbmuxd.a in Frameworks */,
+				CE77230D23C76FDE0000C344 /* libimobiledevice.a in Frameworks */,
+				CE77230F23C76FE10000C344 /* libplist.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,12 +281,11 @@
 		CEA24AB023C10FCD00A6DB11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE7AA85A23C3B652009EFA51 /* libimobiledevice.a */,
-				CE7AA86023C3B658009EFA51 /* libplist.a */,
-				CE7AA85C23C3B655009EFA51 /* libssl.a */,
-				CE7AA86223C3B65A009EFA51 /* libusbmuxd.a */,
-				CE7AA85E23C3B657009EFA51 /* libcrypto.a */,
-				CE7AA85823C3B630009EFA51 /* dependencies.a */,
+				CE77230A23C76FDC0000C344 /* libcrypto.a */,
+				CE77231023C76FE30000C344 /* libssl.a */,
+				CE77231223C76FE50000C344 /* libusbmuxd.a */,
+				CE77230C23C76FDE0000C344 /* libimobiledevice.a */,
+				CE77230E23C76FE10000C344 /* libplist.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -753,6 +759,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dependencies",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "-Dunix=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
@@ -782,6 +792,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dependencies",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "-Dunix=1";
