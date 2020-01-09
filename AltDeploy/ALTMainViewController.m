@@ -9,6 +9,7 @@
 #import "ALTMainViewController.h"
 #import "ALTAddAppleIDViewController.h"
 #import "ALTAppleIDManager.h"
+#import "ALTDragDropView.h"
 #import <SAMKeychain/SAMKeychain.h>
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
@@ -17,7 +18,7 @@
 @class ALTDeviceManager;
 @protocol Installation;
 
-@interface ALTMainViewController () <ALTAddAppleIDDelegate>
+@interface ALTMainViewController () <ALTAddAppleIDDelegate, ALTDragDropViewDelegate>
 
 @property (weak) IBOutlet NSTextField *descriptionLabel;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
@@ -376,7 +377,7 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
             }
             break;
     }
-    _startButton.enabled = (_accountButton.menu.itemArray.count > 0 && _deviceButton.menu.itemArray.count > 0 && _startButton.enabled);
+    _startButton.enabled = (_deviceButton.menu.itemArray.count > 0 && _startButton.enabled);
 }
 
 - (void)reloadMainMenu {
@@ -399,6 +400,7 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     _startButton.action = @selector(didClickStart:);
     _actionButton.action = @selector(didChooseAction:);
     _actionButton.target = self;
+    ((ALTDragDropView *)self.view).dropDelegate = self;
     defaultKeyEquivalent = [_actionButton itemAtIndex:0].keyEquivalent.copy;
     accounts = @[];
     devices = @[];
@@ -416,5 +418,14 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     // Update the view, if already loaded.
 }
 
+#pragma mark - ALTDragDropViewDelegate
+
+- (void)dragDropView:(ALTDragDropView *)view droppedWithFilenames:(NSArray <NSString *> *)filenames {
+    if (filenames.count == 1) {
+        self.actionButton.enabled = YES;
+        self->selectedFileURL = [NSURL fileURLWithPath:filenames.firstObject];
+        [self didChooseAction:self.actionButton];
+    }
+}
 
 @end

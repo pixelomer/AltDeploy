@@ -49,6 +49,7 @@
 		CEBF418023C259CA004338D2 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF417F23C259CA004338D2 /* SAMKeychain.m */; };
 		D69D3D6823C6ADF00095CEC9 /* ALTAddAppleIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D69D3D6723C6ADF00095CEC9 /* ALTAddAppleIDViewController.m */; };
 		D69D3D6B23C6B0950095CEC9 /* ALTAppleIDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D69D3D6A23C6B0950095CEC9 /* ALTAppleIDManager.m */; };
+		D69D3D6E23C6E7CF0095CEC9 /* ALTDragDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = D69D3D6D23C6E7CF0095CEC9 /* ALTDragDropView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -228,6 +229,8 @@
 		D69D3D6723C6ADF00095CEC9 /* ALTAddAppleIDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTAddAppleIDViewController.m; sourceTree = "<group>"; };
 		D69D3D6923C6B0950095CEC9 /* ALTAppleIDManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTAppleIDManager.h; sourceTree = "<group>"; };
 		D69D3D6A23C6B0950095CEC9 /* ALTAppleIDManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTAppleIDManager.m; sourceTree = "<group>"; };
+		D69D3D6C23C6E7CF0095CEC9 /* ALTDragDropView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTDragDropView.h; sourceTree = "<group>"; };
+		D69D3D6D23C6E7CF0095CEC9 /* ALTDragDropView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTDragDropView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,8 +341,8 @@
 		CEA24B7323C1278B00A6DB11 /* AltKit */ = {
 			isa = PBXGroup;
 			children = (
-				CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */,
 				CEA24B7523C1278B00A6DB11 /* AltKit.h */,
+				CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */,
 				CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */,
 				CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */,
 			);
@@ -450,10 +453,10 @@
 		CEA24BE723C130CD00A6DB11 /* AltServer */ = {
 			isa = PBXGroup;
 			children = (
+				CEA24BEA23C130CD00A6DB11 /* ALTDeviceManager.h */,
 				CEA24BE823C130CD00A6DB11 /* ALTDeviceManager.mm */,
 				CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */,
 				CEA24BE923C130CD00A6DB11 /* ALTDeviceManager+Installation.swift */,
-				CEA24BEA23C130CD00A6DB11 /* ALTDeviceManager.h */,
 			);
 			path = AltServer;
 			sourceTree = "<group>";
@@ -472,6 +475,8 @@
 				CEA6377723C3941200CEC7A9 /* ALTMainViewController.m */,
 				D69D3D6623C6ADF00095CEC9 /* ALTAddAppleIDViewController.h */,
 				D69D3D6723C6ADF00095CEC9 /* ALTAddAppleIDViewController.m */,
+				D69D3D6C23C6E7CF0095CEC9 /* ALTDragDropView.h */,
+				D69D3D6D23C6E7CF0095CEC9 /* ALTDragDropView.m */,
 				CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */,
 				CEA6377D23C3941200CEC7A9 /* Info.plist */,
 				CEA6377F23C3941200CEC7A9 /* apple.pem */,
@@ -579,6 +584,7 @@
 				CEA24BE523C12A3100A6DB11 /* miniunz.c in Sources */,
 				CEA24BE423C12A3100A6DB11 /* minizip.c in Sources */,
 				CEA24B6723C1234100A6DB11 /* ALTTeam.m in Sources */,
+				D69D3D6E23C6E7CF0095CEC9 /* ALTDragDropView.m in Sources */,
 				CEA6378423C3941200CEC7A9 /* AppDelegate.m in Sources */,
 				CEA24B6423C1234100A6DB11 /* ALTDevice.m in Sources */,
 				CEA24B6623C1234100A6DB11 /* ALTAppID.m in Sources */,

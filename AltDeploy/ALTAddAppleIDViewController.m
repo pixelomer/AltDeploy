@@ -27,7 +27,7 @@
 }
 
 - (IBAction)didClickButton:(NSButton *)sender {
-    if (!self.passwordField.stringValue.length) {
+    if (!self.usernameField.stringValue.length || !self.passwordField.stringValue.length) {
         return;
     }
     [[ALTAppleIDManager sharedManager] addAppleID:self.usernameField.stringValue password:self.passwordField.stringValue];
