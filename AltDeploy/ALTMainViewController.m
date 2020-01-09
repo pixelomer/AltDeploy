@@ -1,26 +1,48 @@
 //
-//  ViewController.m
+//  ALTMainViewController.m
 //  AltDeploy
 //
 //  Created by PixelOmer on 4.01.2020.
 //  Copyright © 2020 PixelOmer. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ALTMainViewController.h"
+#import "ALTAddAppleIDViewController.h"
+#import "ALTAppleIDManager.h"
+#import <SAMKeychain/SAMKeychain.h>
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
-#import <SAMKeychain/SAMKeychain.h>
 #import <AltServer/ALTDeviceManager.h>
 #import <AltDeploy-Swift.h>
 @class ALTDeviceManager;
 @protocol Installation;
 
-@implementation ViewController
+@interface ALTMainViewController () <ALTAddAppleIDDelegate>
+
+@property (weak) IBOutlet NSTextField *descriptionLabel;
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+@property (weak) IBOutlet NSView *progressContainerView;
+@property (weak) IBOutlet NSPopUpButton *accountButton;
+@property (weak) IBOutlet NSPopUpButton *deviceButton;
+@property (weak) IBOutlet NSPopUpButton *actionButton;
+@property (weak) IBOutlet NSButton *startButton;
+
+@end
+
+@implementation ALTMainViewController {
+    NSArray <NSDictionary *> *accounts;
+    NSArray <NSString *> *devices;
+    NSProgress *currentProgress;
+    NSArray <NSURL *> *utilityURLs;
+    NSURL *selectedFileURL;
+    NSURL *selectedUtilityURL;
+    NSMenuItem *pluginMenuItem;
+}
 
 static NSString *defaultKeyEquivalent;
 
 static void handle_idevice_event(const idevice_event_t *event, void *user_data) {
-	ViewController *vc = (__bridge id)user_data;
+	ALTMainViewController *vc = (__bridge id)user_data;
 	[vc refreshDevices];
 }
 
@@ -36,35 +58,37 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 	}];
 }
 
-- (void)didClickSaveButton:(NSButton *)sender {
-	NSSecureTextField *passwordField = objc_getAssociatedObject(sender, @selector(passwordField));
-	NSTextField *usernameField = objc_getAssociatedObject(sender, @selector(usernameField));
-	[self.class setAppleIDUsername:usernameField.stringValue password:passwordField.stringValue];
-	objc_setAssociatedObject(sender, @selector(passwordField), nil, OBJC_ASSOCIATION_RETAIN);
-	objc_setAssociatedObject(sender, @selector(usernameField), nil, OBJC_ASSOCIATION_RETAIN);
-	[sender.window close];
+- (void)askForAppleID {
+	ALTAddAppleIDViewController *vc = (ALTAddAppleIDViewController *)[[NSStoryboard storyboardWithName:@"Main" bundle:NSBundle.mainBundle] instantiateControllerWithIdentifier:@"appleid"];
+    vc.delegate = self;
+	[self presentViewControllerAsModalWindow:vc];
 }
 
-- (void)askForAppleID {
-	NSViewController *vc = [[NSStoryboard storyboardWithName:@"Main" bundle:NSBundle.mainBundle] instantiateControllerWithIdentifier:@"appleid"];
-	NSSecureTextField *passwordField = nil;
-	NSTextField *usernameField = nil;
-	NSButton *button = nil;
-	for (__kindof NSView *view in vc.view.subviews) {
-		NSLog(@"view: %@", view);
-		if (view.tag == 300) button = view;
-		else if (view.tag == 200) passwordField = view;
-		else if (view.tag == 100) usernameField = view;
-	}
-	objc_setAssociatedObject(button, @selector(passwordField), passwordField, OBJC_ASSOCIATION_RETAIN);
-	objc_setAssociatedObject(button, @selector(usernameField), usernameField, OBJC_ASSOCIATION_RETAIN);
-	NSString *username;
-	if ([self.class getAppleIDUsername:&username password:nil]) {
-		usernameField.stringValue = username;
-	}
-	button.action = @selector(didClickSaveButton:);
-	button.target = self;
-	[self presentViewControllerAsModalWindow:vc];
+- (void)didAddAppleID {
+    [self refreshAppleIDs];
+}
+
+- (void)refreshAppleIDs {
+    accounts = [[ALTAppleIDManager sharedManager] getAllAppleIDs];
+    NSMutableArray <NSString *> *newOptions = [NSMutableArray array];
+    for (NSDictionary *account in accounts) {
+        [newOptions addObject:account[kSAMKeychainAccountKey]];
+    }
+    [self.class dispatchIfNecessary:^{
+        [self.accountButton removeAllItems];
+        for (NSString *title in newOptions) {
+            [self.accountButton.menu
+                addItemWithTitle:title
+                action:nil
+                keyEquivalent:defaultKeyEquivalent
+            ];
+        }
+        [self didChooseAction:self.actionButton];
+    }];
+}
+
+- (void)didClickInstallPlugin:(id)sender {
+    [self beginMailPluginInstallation];
 }
 
 - (void)beginMailPluginInstallation {
@@ -94,10 +118,6 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 	[self reloadMainMenu];
 }
 
-- (void)didClickInstallPlugin:(id)sender {
-	[self beginMailPluginInstallation];
-}
-
 - (void)refreshDevices {
 	char **udids;
 	int udid_count = 0;
@@ -117,8 +137,8 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 		default:
 			[NSException raise:NSInternalInconsistencyException format:@"Failed to get device UDIDs (%d)", error];
 	}
-	NSMutableArray * __block newOptions = [NSMutableArray new];
-	for (NSInteger i=0; i<devices.count; i++) {
+	NSMutableArray <NSString *> *newOptions = [NSMutableArray array];
+	for (NSInteger i = 0; i < devices.count; i++) {
 		NSString *newOption = [NSString stringWithFormat:@"Unknown [%s]", udids[i]];
 		idevice_t device;
 		if (idevice_new(&device, udids[i]) == IDEVICE_E_SUCCESS) {
@@ -134,7 +154,7 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 			idevice_free(device);
 		}
 		[newOptions addObject:newOption];
-		if (i == (devices.count-1)) {
+		if (i == (devices.count - 1)) {
 			idevice_device_list_free(udids);
 		}
 	}
@@ -148,16 +168,16 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 			];
 		}
 		[self didChooseAction:self.actionButton];
-		newOptions = nil;
 	}];
 }
 
 - (void)setProgressVisible:(BOOL)visible {
 	[self.class dispatchIfNecessary:^{
-		self->_progressContainerView.hidden = !visible;
-		self->_deviceButton.hidden = visible;
-		self->_actionButton.hidden = visible;
-		self->_startButton.hidden = visible;
+		self.progressContainerView.hidden = !visible;
+        self.accountButton.hidden = visible;
+		self.deviceButton.hidden = visible;
+		self.actionButton.hidden = visible;
+		self.startButton.hidden = visible;
 	}];
 }
 
@@ -175,11 +195,16 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 		}
 		return;
 	}
-	NSString *username, *password;
-	if (![self.class getAppleIDUsername:&username password:&password]) {
-		[self askForAppleID];
-		return;
-	}
+    if (_accountButton.indexOfSelectedItem < 0) {
+        [self askForAppleID];
+        return;
+    }
+    NSString *username = accounts[_accountButton.indexOfSelectedItem][kSAMKeychainAccountKey];
+    NSString *password = [[ALTAppleIDManager sharedManager] passwordOfAppleID:username];
+    if (!username || !password) {
+        [self askForAppleID];
+        return;
+    }
 	NSURL *fileURL = nil;
 	if (_actionButton.indexOfSelectedItem == 0) {
 		// Selecteed IPA
@@ -193,31 +218,30 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 		_startButton.enabled = NO;
 		return;
 	}
-	self.progressVisible = YES;
+	[self setProgressVisible:YES];
 	ALTDevice *device = [[ALTDevice alloc] initWithName:@"targetDevice" identifier:devices[_deviceButton.indexOfSelectedItem]];
-	NSProgress * __block progress = nil;
-	progress = [ALTDeviceManager.sharedManager
-		installApplicationTo:device
-		appleID:username
-		password:password
-		applicationURL:fileURL
-		completion:^(NSError * _Nullable error) {
-			[progress removeObserver:self forKeyPath:@"localizedDescription"];
-			if (error) {
-				dispatch_async(dispatch_get_main_queue(), ^{
-					NSAlert *alert = [NSAlert alertWithError:error];
-					[alert addButtonWithTitle:@"Dismiss"];
-					[alert runModal];
-					self.progressVisible = NO;
-				});
-			}
-			else {
-				dispatch_async(dispatch_get_main_queue(), ^{
-					self.progressVisible = NO;
-				});
-			}
-		}
-	];
+	NSProgress *progress = nil;
+    progress = [ALTDeviceManager.sharedManager
+                installApplicationTo:device
+                appleID:username
+                password:password
+                applicationURL:fileURL
+                completion:^(NSError * _Nullable error) {
+        [progress removeObserver:self forKeyPath:@"localizedDescription"];
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert addButtonWithTitle:@"Dismiss"];
+                [alert runModal];
+                [self setProgressVisible:NO];
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setProgressVisible:NO];
+            });
+        }
+    }];
 	// FIXME: Race condition
 	// If the completionHandler is called before the addObserver call,
 	// the app will crash.
@@ -228,16 +252,6 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 		options:0
 		context:nil
 	];
-}
-
-+ (BOOL)getAppleIDUsername:(NSString **)usernamePt password:(NSString **)passwordPt {
-	NSDictionary *account = [SAMKeychain accountsForService:NSBundle.mainBundle.bundleIdentifier].firstObject;
-	if (!account) return NO;
-	NSString *password = [SAMKeychain passwordForService:NSBundle.mainBundle.bundleIdentifier account:account[kSAMKeychainAccountKey]];
-	if (!password) return NO;
-	if (passwordPt) *passwordPt = [password copy];
-	if (usernamePt) *usernamePt = [account[kSAMKeychainAccountKey] copy];
-	return YES;
 }
 
 + (NSString *)altPluginPath {
@@ -251,13 +265,6 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 + (BOOL)isPluginInstalled {
 	BOOL isDir;
 	return ([NSFileManager.defaultManager fileExistsAtPath:[[self mailBundlesPath] stringByAppendingPathComponent:[self altPluginPath].lastPathComponent] isDirectory:&isDir] && isDir);
-}
-
-+ (BOOL)setAppleIDUsername:(NSString *)username password:(NSString *)password {
-	for (NSDictionary *account in [SAMKeychain accountsForService:NSBundle.mainBundle.bundleIdentifier]) {
-		[SAMKeychain deletePasswordForService:NSBundle.mainBundle.bundleIdentifier account:account[kSAMKeychainAccountKey]];
-	}
-	return [SAMKeychain setPassword:password forService:NSBundle.mainBundle.bundleIdentifier account:username error:nil];
 }
 
 - (void)fetchUtilities {
@@ -365,11 +372,11 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 				selectedUtilityURL = nil;
 			}
 			else {
-				selectedUtilityURL = utilityURLs[index-3];
+				selectedUtilityURL = utilityURLs[index - 3];
 			}
 			break;
 	}
-	_startButton.enabled = (_deviceButton.menu.itemArray.count && _startButton.enabled);
+	_startButton.enabled = (_accountButton.menu.itemArray.count > 0 && _deviceButton.menu.itemArray.count > 0 && _startButton.enabled);
 }
 
 - (void)reloadMainMenu {
@@ -393,8 +400,10 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 	_actionButton.action = @selector(didChooseAction:);
 	_actionButton.target = self;
 	defaultKeyEquivalent = [_actionButton itemAtIndex:0].keyEquivalent.copy;
+    accounts = @[];
 	devices = @[];
 	[self didChooseAction:self->_actionButton];
+    [self refreshAppleIDs];
 	[self fetchUtilities];
 	idevice_error_t error;
 	if ((error = idevice_event_subscribe(&handle_idevice_event, (__bridge void *)self)) != IDEVICE_E_SUCCESS) {

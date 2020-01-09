@@ -110,7 +110,7 @@ extension ALTDeviceManager
                                                             {
                                                                 let appID = try result.get()
 																progress.completedUnitCount += 1
-																progress.localizedDescription = "Updating app ID...";
+																progress.localizedDescription = "Updating App ID...";
                                                                 
                                                                 self.updateFeatures(for: appID, app: application, team: team, session: session) { (result) in
                                                                     do
@@ -127,7 +127,7 @@ extension ALTDeviceManager
 																				progress.localizedDescription = "Beginning installation...";
                                                                                 
                                                                                 self.install(application, to: device, team: team, appID: appID, certificate: certificate, profile: provisioningProfile, progress: progress) { (result) in
-                                                                                    finish(result.error, title: "Failed to Install AltStore")
+                                                                                    finish(result.error, title: "Failed to Install App")
                                                                                 }
                                                                             }
                                                                             catch

@@ -7,18 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ViewController.h"
+#import "ALTMainViewController.h"
 #import <spawn.h>
 
 int main(int argc, const char * argv[]) {
 	if ((argc >= 2) && !strcmp(argv[1], "-i")) {
 		setuid(0);
 		seteuid(0);
-		NSURL *pluginPath = [NSURL fileURLWithPath:[ViewController altPluginPath]];
+		NSURL *pluginPath = [NSURL fileURLWithPath:[ALTMainViewController altPluginPath]];
 		NSLog(@"%@", pluginPath);
-		NSURL *mailBundlesURL = [NSURL fileURLWithPath:ViewController.mailBundlesPath];
+		NSURL *mailBundlesURL = [NSURL fileURLWithPath:ALTMainViewController.mailBundlesPath];
 		NSURL *destinationURL = [mailBundlesURL URLByAppendingPathComponent:pluginPath.lastPathComponent];
-		BOOL wasInstalled = [ViewController isPluginInstalled];
+		BOOL wasInstalled = [ALTMainViewController isPluginInstalled];
 		NSLog(@"%d", wasInstalled);
 		[NSFileManager.defaultManager removeItemAtURL:destinationURL error:nil]; // Uninstall
 		if (!wasInstalled) {
