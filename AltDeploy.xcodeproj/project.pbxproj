@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */ = {isa = PBXBuildFile; fileRef = CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */; };
+		CE72335323C8BD0F0019006B /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = CE72335223C8BD0F0019006B /* AppIcon.icns */; };
 		CE77230B23C76FDC0000C344 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230A23C76FDC0000C344 /* libcrypto.a */; };
 		CE77230D23C76FDE0000C344 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230C23C76FDE0000C344 /* libimobiledevice.a */; };
 		CE77230F23C76FE10000C344 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230E23C76FE10000C344 /* libplist.a */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AltPlugin.mailbundle; sourceTree = "<group>"; };
+		CE72335223C8BD0F0019006B /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		CE77230A23C76FDC0000C344 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/libcrypto.a; sourceTree = "<group>"; };
 		CE77230C23C76FDE0000C344 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Dependencies/libimobiledevice.a; sourceTree = "<group>"; };
 		CE77230E23C76FE10000C344 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = Dependencies/libplist.a; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				CEA6377523C3941200CEC7A9 /* AppDelegate.h */,
+				CE72335223C8BD0F0019006B /* AppIcon.icns */,
 				CEA6377C23C3941200CEC7A9 /* AppDelegate.m */,
 				CEA6377A23C3941200CEC7A9 /* main.m */,
 				CEA6377623C3941200CEC7A9 /* Assets.xcassets */,
@@ -565,6 +568,7 @@
 				CEA6378023C3941200CEC7A9 /* Assets.xcassets in Resources */,
 				CEA6378623C3941200CEC7A9 /* apple.pem in Resources */,
 				CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */,
+				CE72335323C8BD0F0019006B /* AppIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,12 +745,11 @@
 		CEA24AAE23C10F8A00A6DB11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AltDeploy/AltDeploy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = MB269FV75D;
+				DEVELOPMENT_TEAM = 9UQFRSGV3G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				HEADER_SEARCH_PATHS = (
@@ -776,12 +779,11 @@
 		CEA24AAF23C10F8A00A6DB11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AltDeploy/AltDeploy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = MB269FV75D;
+				DEVELOPMENT_TEAM = 9UQFRSGV3G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
