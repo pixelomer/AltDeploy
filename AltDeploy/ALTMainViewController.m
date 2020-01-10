@@ -14,6 +14,7 @@
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
 #import <AltServer/ALTDeviceManager.h>
+#import "ALTPreferencesViewController.h"
 #import <AltDeploy-Swift.h>
 @class ALTDeviceManager;
 @protocol Installation;
@@ -48,6 +49,11 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     }];
 }
 
+- (void)didClickPreferences:(id)sender {
+    ALTPreferencesViewController *vc = (ALTPreferencesViewController *)[[NSStoryboard storyboardWithName:@"Main" bundle:NSBundle.mainBundle] instantiateControllerWithIdentifier:@"prefs"];
+    [self presentViewControllerAsModalWindow:vc];
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
@@ -56,7 +62,11 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
         @"RegisterDeviceAutomatically": @(YES)
     }];
     
-    NSMenuItem *item = NSApp.mainMenu.itemArray[0].submenu.itemArray[3];
+    NSMenuItem *item = NSApp.mainMenu.itemArray[0].submenu.itemArray[2];
+    item.action = @selector(didClickPreferences:);
+    item.target = self;
+    
+    item = NSApp.mainMenu.itemArray[0].submenu.itemArray[3];
     item.action = @selector(didClickAddAppleID:);
     item.target = self;
     
