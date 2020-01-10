@@ -18,18 +18,6 @@
 @class ALTDeviceManager;
 @protocol Installation;
 
-@interface ALTMainViewController () <ALTAddAppleIDDelegate, ALTDragDropViewDelegate>
-
-@property (weak) IBOutlet NSTextField *descriptionLabel;
-@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
-@property (weak) IBOutlet NSView *progressContainerView;
-@property (weak) IBOutlet NSPopUpButton *accountButton;
-@property (weak) IBOutlet NSPopUpButton *deviceButton;
-@property (weak) IBOutlet NSPopUpButton *actionButton;
-@property (weak) IBOutlet NSButton *startButton;
-
-@end
-
 @implementation ALTMainViewController {
     NSArray <NSDictionary *> *accounts;
     NSArray <NSString *> *devices;
@@ -68,24 +56,25 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
         @"RegisterDeviceAutomatically": @(YES)
     }];
     
-    NSMenuItem *item0 = NSApp.mainMenu.itemArray[0].submenu.itemArray[2];
-    item0.action = @selector(didClickAddAppleID:);
-    item0.target = self;
+    NSMenuItem *item = NSApp.mainMenu.itemArray[0].submenu.itemArray[3];
+    item.action = @selector(didClickAddAppleID:);
+    item.target = self;
     
-    NSMenuItem *item1 = NSApp.mainMenu.itemArray[0].submenu.itemArray[3];
-    item1.action = @selector(didClickKeychainAccess:);
-    item1.target = self;
+    item = NSApp.mainMenu.itemArray[0].submenu.itemArray[4];
+    item.action = @selector(didClickKeychainAccess:);
+    item.target = self;
     
-    registerDeviceMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[4];
+    registerDeviceMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[5];
     registerDeviceMenuItem.action = @selector(didClickRegisterDeviceAutomatically:);
     registerDeviceMenuItem.target = self;
     registerDeviceMenuItem.state = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegisterDeviceAutomatically"] ? NSControlStateValueOn : NSControlStateValueOff;
     
-    NSMenuItem *itemHelp = NSApp.mainMenu.itemArray[4].submenu.itemArray[0];
-    itemHelp.action = @selector(showHelp:);
-    itemHelp.target = self;
+    item = NSApp.mainMenu.itemArray[4].submenu.itemArray[0];
+    item.action = @selector(showHelp:);
+    item.target = self;
+    NSApp.helpMenu = [NSMenu new];
     
-    mailPluginMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[6];
+    mailPluginMenuItem = NSApp.mainMenu.itemArray[0].submenu.itemArray[7];
     mailPluginMenuItem.action = @selector(didClickInstallPlugin:);
     mailPluginMenuItem.target = self;
     
@@ -123,8 +112,8 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 
 - (void)dragDropView:(ALTDragDropView *)view droppedWithFilenames:(NSArray <NSString *> *)filenames {
     if (filenames.count == 1) {
-        self.actionButton.enabled = YES;
         self->selectedFileURL = [NSURL fileURLWithPath:filenames.firstObject];
+        [_actionButton.menu performActionForItemAtIndex:0];
         [self didChooseAction:self.actionButton];
     }
 }
@@ -179,7 +168,6 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
                         @"do shell script \"/bin/bash -c \\\"\\\\\\\"\\\\$(base64 -D <<< \\\\\\\"%@\\\\\\\")\\\\\\\" -i\\\"\" with administrator privileges",
                         [[NSBundle.mainBundle.executablePath dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0]
                         ];
-    NSLog(@"%@", script);
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:script];
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:@"OK"];
@@ -460,25 +448,26 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     ALTDevice *device = [[ALTDevice alloc] initWithName:@"targetDevice" identifier:devices[_deviceButton.indexOfSelectedItem]];
     NSProgress *progress = nil;
     progress = [ALTDeviceManager.sharedManager installApplicationTo:device
-                                                            appleID:username
-                                                           password:password
-                                                     applicationURL:fileURL
-                                                         completion:^(NSError * _Nullable error) {
-        [progress removeObserver:self forKeyPath:@"localizedDescription"];
-        if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSAlert *alert = [NSAlert alertWithError:error];
-                [alert addButtonWithTitle:@"Dismiss"];
-                [alert runModal];
-                [self setProgressVisible:NO];
-            });
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self setProgressVisible:NO];
-            });
-        }
-    }];
+		appleID:username
+        password:password
+        applicationURL:fileURL
+        completion:^(NSError * _Nullable error) {
+			[progress removeObserver:self forKeyPath:@"localizedDescription"];
+			if (error) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					NSAlert *alert = [NSAlert alertWithError:error];
+					[alert addButtonWithTitle:@"Dismiss"];
+					[alert runModal];
+					[self setProgressVisible:NO];
+				});
+			}
+			else {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[self setProgressVisible:NO];
+				});
+			}
+		}
+	];
     // FIXME: Race condition
     // If the completionHandler is called before the addObserver call,
     // the app will crash.

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */ = {isa = PBXBuildFile; fileRef = CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */; };
+		CE64527723C8D1A200BA4593 /* ALTPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE64527623C8D1A200BA4593 /* ALTPreferencesViewController.m */; };
 		CE72335323C8BD0F0019006B /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = CE72335223C8BD0F0019006B /* AppIcon.icns */; };
 		CE77230B23C76FDC0000C344 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230A23C76FDC0000C344 /* libcrypto.a */; };
 		CE77230D23C76FDE0000C344 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77230C23C76FDE0000C344 /* libimobiledevice.a */; };
@@ -72,6 +73,8 @@
 
 /* Begin PBXFileReference section */
 		CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AltPlugin.mailbundle; sourceTree = "<group>"; };
+		CE64527523C8D1A200BA4593 /* ALTPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTPreferencesViewController.h; sourceTree = "<group>"; };
+		CE64527623C8D1A200BA4593 /* ALTPreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTPreferencesViewController.m; sourceTree = "<group>"; };
 		CE72335223C8BD0F0019006B /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		CE77230A23C76FDC0000C344 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/libcrypto.a; sourceTree = "<group>"; };
 		CE77230C23C76FDE0000C344 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Dependencies/libimobiledevice.a; sourceTree = "<group>"; };
@@ -489,6 +492,8 @@
 				CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */,
 				CEA6377D23C3941200CEC7A9 /* Info.plist */,
 				CEA6377F23C3941200CEC7A9 /* apple.pem */,
+				CE64527523C8D1A200BA4593 /* ALTPreferencesViewController.h */,
+				CE64527623C8D1A200BA4593 /* ALTPreferencesViewController.m */,
 			);
 			path = AltDeploy;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				CEA24B7723C1278B00A6DB11 /* NSError+ALTServerError.m in Sources */,
 				CEA24BF723C132E000A6DB11 /* Result+Conveniences.swift in Sources */,
 				CEA24BEC23C130CD00A6DB11 /* ALTDeviceManager+Installation.swift in Sources */,
+				CE64527723C8D1A200BA4593 /* ALTPreferencesViewController.m in Sources */,
 				CEA24B6123C1234100A6DB11 /* ALTSigner.mm in Sources */,
 				CEBF418023C259CA004338D2 /* SAMKeychain.m in Sources */,
 				CEBF417D23C2599C004338D2 /* SAMKeychainQuery.m in Sources */,
@@ -767,6 +773,7 @@
 					"$(PROJECT_DIR)/Dependencies",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.1;
 				OTHER_CFLAGS = "-Dunix=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -800,6 +807,7 @@
 					"$(PROJECT_DIR)/Dependencies",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.1;
 				OTHER_CFLAGS = "-Dunix=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

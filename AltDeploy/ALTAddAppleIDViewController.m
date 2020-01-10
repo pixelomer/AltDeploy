@@ -9,21 +9,16 @@
 #import "ALTAddAppleIDViewController.h"
 #import "ALTAppleIDManager.h"
 
-@interface ALTAddAppleIDViewController ()
-@property (weak) IBOutlet NSTextField *usernameField;
-@property (weak) IBOutlet NSSecureTextField *passwordField;
-@property (weak) IBOutlet NSButton *saveButton;
-@end
-
 @implementation ALTAddAppleIDViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSString *username = nil;
-    if ([[ALTAppleIDManager sharedManager] getLastAppleID:&username]) {
-        [self.usernameField setStringValue:username];
-    }
+    [self controlTextDidChange:(_Nonnull id)nil];
+    self.usernameField.delegate = self.passwordField.delegate = self;
+}
+
+- (void)controlTextDidChange:(NSNotification *)notif {
+	self.saveButton.enabled = (self.usernameField.stringValue.length && self.passwordField.stringValue.length);
 }
 
 - (IBAction)didClickButton:(NSButton *)sender {

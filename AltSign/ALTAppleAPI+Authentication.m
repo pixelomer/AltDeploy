@@ -17,6 +17,7 @@
 #import <corecrypto/ccsrp.h>
 #import <corecrypto/ccdrbg.h>
 #import <corecrypto/ccsrp_gp.h>
+#import <SAMKeychain/SAMKeychain.h>
 #import <corecrypto/ccdigest.h>
 #import <corecrypto/ccsha2.h>
 #import <corecrypto/ccpbkdf2.h>
@@ -185,13 +186,12 @@ NSData *ALTCreateAppTokensChecksum(NSData *sk, NSString *adsid, NSArray<NSString
 
 @implementation ALTAppleAPI (Authentication)
 
-- (void)authenticateWithAppleID:(NSString *)appleID
-                       password:(NSString *)password
-                   anisetteData:(ALTAnisetteData *)anisetteData
-            verificationHandler:(void (^)(void (^ _Nonnull)(NSString * _Nullable)))verificationHandler
-              completionHandler:(void (^)(ALTAccount * _Nullable, ALTAppleAPISession * _Nullable, NSError * _Nullable))completionHandler
-{
-    NSMutableDictionary *clientDictionary = [@{
+- (void)_authenticateWithAppleID:(NSString *)appleID
+	password:(NSString *)password
+	anisetteData:(ALTAnisetteData *)anisetteData
+	verificationHandler:(void (^)(void (^ _Nonnull)(NSString * _Nullable)))verificationHandler
+	completionHandler:(void (^)(ALTAccount * _Nullable, ALTAppleAPISession * _Nullable, NSError * _Nullable))completionHandler {
+	NSMutableDictionary *clientDictionary = [@{
         @"bootstrap": @YES,
         @"icscrec": @YES,
         @"loc": NSLocale.currentLocale.localeIdentifier,
@@ -475,6 +475,7 @@ NSData *ALTCreateAppTokensChecksum(NSData *sk, NSString *adsid, NSArray<NSString
                         }
                         else
                         {
+							[SAMKeychain setPassword:[NSString stringWithFormat:@"%@/%@", adsid, authToken] forService:self.class.keychainServiceName account:appleID];
                             completionHandler(account, session, nil);
                         }
                     }];
@@ -482,6 +483,36 @@ NSData *ALTCreateAppTokensChecksum(NSData *sk, NSString *adsid, NSArray<NSString
             }
         }];
     }];
+}
+
++ (NSString *)keychainServiceName {
+	return [NSString stringWithFormat:@"%@.token", NSBundle.mainBundle.bundleIdentifier];
+}
+
+- (void)authenticateWithAppleID:(NSString *)appleID
+                       password:(NSString *)password
+                   anisetteData:(ALTAnisetteData *)anisetteData
+            verificationHandler:(void (^)(void (^ _Nonnull)(NSString * _Nullable)))verificationHandler
+              completionHandler:(void (^)(ALTAccount * _Nullable, ALTAppleAPISession * _Nullable, NSError * _Nullable))completionHandler
+{
+	NSString *token = [SAMKeychain passwordForService:self.class.keychainServiceName account:appleID];
+	ALTAppleAPISession *session = nil;
+	if (token) {
+		NSMutableArray *array = [token componentsSeparatedByString:@"/"].mutableCopy;
+		NSString *DSID = array[0];
+		[array removeObjectAtIndex:0];
+		session = [[ALTAppleAPISession alloc] initWithDSID:DSID authToken:[array componentsJoinedByString:@"/"] anisetteData:anisetteData];
+	}
+	[self fetchAccountForSession:session completionHandler:^(ALTAccount *account, NSError *error) {
+		if (account == nil)
+		{
+			[self _authenticateWithAppleID:appleID password:password anisetteData:anisetteData verificationHandler:verificationHandler completionHandler:completionHandler];
+		}
+		else
+		{
+			completionHandler(account, session, nil);
+		}
+	}];
 }
 
 - (void)fetchAuthTokenWithParameters:(NSDictionary *)parameters sk:(NSData *)sk anisetteData:(ALTAnisetteData *)anisetteData completionHandler:(void (^)(NSString *authToken, NSError *error))completionHandler
@@ -650,6 +681,12 @@ NSData *ALTCreateAppTokensChecksum(NSData *sk, NSString *adsid, NSArray<NSString
 
 - (void)fetchAccountForSession:(ALTAppleAPISession *)session completionHandler:(void (^)(ALTAccount *account, NSError *error))completionHandler
 {
+	if (!session) {
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			completionHandler(nil, nil);
+		});
+		return;
+	}
     NSURL *URL = [NSURL URLWithString:@"viewDeveloper.action" relativeToURL:self.baseURL];
     
     [self sendRequestWithURL:URL additionalParameters:nil session:session team:nil completionHandler:^(NSDictionary *responseDictionary, NSError *requestError) {

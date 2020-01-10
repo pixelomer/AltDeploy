@@ -10,12 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ALTMainViewController : NSViewController
+@protocol ALTAddAppleIDDelegate;
+@protocol ALTDragDropViewDelegate;
 
+@interface ALTMainViewController : NSViewController<ALTAddAppleIDDelegate, ALTDragDropViewDelegate>
+@property (weak) IBOutlet NSTextField *descriptionLabel;
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+@property (weak) IBOutlet NSView *progressContainerView;
+@property (weak) IBOutlet NSPopUpButton *accountButton;
+@property (weak) IBOutlet NSPopUpButton *deviceButton;
+@property (weak) IBOutlet NSPopUpButton *actionButton;
+@property (weak) IBOutlet NSButton *startButton;
 + (BOOL)isPluginInstalled;
 + (NSString *)mailBundlesPath;
 + (NSString *)altPluginPath;
-
 @end
 
 NS_ASSUME_NONNULL_END
