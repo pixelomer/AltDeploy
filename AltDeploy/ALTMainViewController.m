@@ -175,9 +175,11 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
 - (void)beginMailPluginInstallation {
     BOOL isInstalling = ![self.class isPluginInstalled];
     NSString *script = [NSString stringWithFormat:
-                        @"do shell script \"%@ -i\" with administrator privileges",
-                        NSBundle.mainBundle.executablePath
+                        // it works, don't touch it
+                        @"do shell script \"/bin/bash -c \\\"\\\\\\\"\\\\$(base64 -D <<< \\\\\\\"%@\\\\\\\")\\\\\\\" -i\\\"\" with administrator privileges",
+                        [[NSBundle.mainBundle.executablePath dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0]
                         ];
+    NSLog(@"%@", script);
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:script];
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:@"OK"];
@@ -185,7 +187,12 @@ static void handle_idevice_event(const idevice_event_t *event, void *user_data) 
     if ([appleScript executeAndReturnError:&error]) {
         alert.messageText = @"Success";
         if (isInstalling) {
-            alert.informativeText = @"The mail plugin is now installed. To enable this plugin:\n1) Restart the mail app\n2) In mail preferences, press \"Manage Plug-ins...\"\n3) Enable \"AltPlugin.mailbundle\"\n4) Press \"Apply and Restart Mail\"\nThis application relies on this plugin so this plugin must be enabled. It is also necessary to keep the Mail application open while AltDeploy is running.";
+            if (@available(macOS 10.14.0, *)) {
+                alert.informativeText = @"The mail plugin is now installed. To enable this plugin:\n1) Restart the mail app\n2) In mail preferences, press \"Manage Plug-ins...\"\n3) Enable \"AltPlugin.mailbundle\"\n4) Press \"Apply and Restart Mail\"\nThis application relies on this plugin so this plugin must be enabled. It is also necessary to keep the Mail application open while AltDeploy is running.";
+            }
+            else {
+                alert.informativeText = @"The mail plugin is now installed. If Mail is currently open, please close and reopen it for the changes to take effect. The Mail app has to be open while AltDeploy is running.";
+            }
         }
         else {
             alert.informativeText = @"The mail plugin was uninstalled successfully.";
