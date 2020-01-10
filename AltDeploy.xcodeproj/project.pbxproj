@@ -43,7 +43,7 @@
 		CEA24BF723C132E000A6DB11 /* Result+Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */; };
 		CEA24BFB23C133C500A6DB11 /* AnisetteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */; };
 		CEA6378023C3941200CEC7A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377623C3941200CEC7A9 /* Assets.xcassets */; };
-		CEA6378123C3941200CEC7A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377723C3941200CEC7A9 /* ViewController.m */; };
+		CEA6378123C3941200CEC7A9 /* ALTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377723C3941200CEC7A9 /* ALTMainViewController.m */; };
 		CEA6378223C3941200CEC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377823C3941200CEC7A9 /* Main.storyboard */; };
 		CEA6378323C3941200CEC7A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377A23C3941200CEC7A9 /* main.m */; };
 		CEA6378423C3941200CEC7A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6377C23C3941200CEC7A9 /* AppDelegate.m */; };
@@ -51,6 +51,9 @@
 		CEA6378623C3941200CEC7A9 /* apple.pem in Resources */ = {isa = PBXBuildFile; fileRef = CEA6377F23C3941200CEC7A9 /* apple.pem */; };
 		CEBF417D23C2599C004338D2 /* SAMKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF417C23C2599C004338D2 /* SAMKeychainQuery.m */; };
 		CEBF418023C259CA004338D2 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF417F23C259CA004338D2 /* SAMKeychain.m */; };
+		D69D3D6823C6ADF00095CEC9 /* ALTAddAppleIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D69D3D6723C6ADF00095CEC9 /* ALTAddAppleIDViewController.m */; };
+		D69D3D6B23C6B0950095CEC9 /* ALTAppleIDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D69D3D6A23C6B0950095CEC9 /* ALTAppleIDManager.m */; };
+		D69D3D6E23C6E7CF0095CEC9 /* ALTDragDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = D69D3D6D23C6E7CF0095CEC9 /* ALTDragDropView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -211,13 +214,13 @@
 		CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnisetteDataManager.swift; sourceTree = "<group>"; };
 		CEA6377523C3941200CEC7A9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEA6377623C3941200CEC7A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CEA6377723C3941200CEC7A9 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CEA6377723C3941200CEC7A9 /* ALTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTMainViewController.m; sourceTree = "<group>"; };
 		CEA6377923C3941200CEC7A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEA6377A23C3941200CEC7A9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AltDeploy.entitlements; sourceTree = "<group>"; };
 		CEA6377C23C3941200CEC7A9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CEA6377D23C3941200CEC7A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEA6377E23C3941200CEC7A9 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CEA6377E23C3941200CEC7A9 /* ALTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTMainViewController.h; sourceTree = "<group>"; };
 		CEA6377F23C3941200CEC7A9 /* apple.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apple.pem; sourceTree = "<group>"; };
 		CEA6378723C3944400CEC7A9 /* AltDeploy-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AltDeploy-Bridge.h"; sourceTree = "<group>"; };
 		CEBF417A23C2597E004338D2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -225,6 +228,12 @@
 		CEBF417C23C2599C004338D2 /* SAMKeychainQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMKeychainQuery.m; sourceTree = "<group>"; };
 		CEBF417E23C259CA004338D2 /* SAMKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMKeychain.h; sourceTree = "<group>"; };
 		CEBF417F23C259CA004338D2 /* SAMKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMKeychain.m; sourceTree = "<group>"; };
+		D69D3D6623C6ADF00095CEC9 /* ALTAddAppleIDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTAddAppleIDViewController.h; sourceTree = "<group>"; };
+		D69D3D6723C6ADF00095CEC9 /* ALTAddAppleIDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTAddAppleIDViewController.m; sourceTree = "<group>"; };
+		D69D3D6923C6B0950095CEC9 /* ALTAppleIDManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTAppleIDManager.h; sourceTree = "<group>"; };
+		D69D3D6A23C6B0950095CEC9 /* ALTAppleIDManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTAppleIDManager.m; sourceTree = "<group>"; };
+		D69D3D6C23C6E7CF0095CEC9 /* ALTDragDropView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTDragDropView.h; sourceTree = "<group>"; };
+		D69D3D6D23C6E7CF0095CEC9 /* ALTDragDropView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTDragDropView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,8 +347,8 @@
 		CEA24B7323C1278B00A6DB11 /* AltKit */ = {
 			isa = PBXGroup;
 			children = (
-				CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */,
 				CEA24B7523C1278B00A6DB11 /* AltKit.h */,
+				CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */,
 				CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */,
 				CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */,
 			);
@@ -450,10 +459,10 @@
 		CEA24BE723C130CD00A6DB11 /* AltServer */ = {
 			isa = PBXGroup;
 			children = (
+				CEA24BEA23C130CD00A6DB11 /* ALTDeviceManager.h */,
 				CEA24BE823C130CD00A6DB11 /* ALTDeviceManager.mm */,
 				CEA24BFA23C133C500A6DB11 /* AnisetteDataManager.swift */,
 				CEA24BE923C130CD00A6DB11 /* ALTDeviceManager+Installation.swift */,
-				CEA24BEA23C130CD00A6DB11 /* ALTDeviceManager.h */,
 			);
 			path = AltServer;
 			sourceTree = "<group>";
@@ -462,14 +471,20 @@
 			isa = PBXGroup;
 			children = (
 				CEA6377523C3941200CEC7A9 /* AppDelegate.h */,
-				CEA6377623C3941200CEC7A9 /* Assets.xcassets */,
-				CEA6377723C3941200CEC7A9 /* ViewController.m */,
-				CEA6377823C3941200CEC7A9 /* Main.storyboard */,
-				CEA6377A23C3941200CEC7A9 /* main.m */,
-				CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */,
 				CEA6377C23C3941200CEC7A9 /* AppDelegate.m */,
+				CEA6377A23C3941200CEC7A9 /* main.m */,
+				CEA6377623C3941200CEC7A9 /* Assets.xcassets */,
+				CEA6377823C3941200CEC7A9 /* Main.storyboard */,
+				D69D3D6923C6B0950095CEC9 /* ALTAppleIDManager.h */,
+				D69D3D6A23C6B0950095CEC9 /* ALTAppleIDManager.m */,
+				CEA6377E23C3941200CEC7A9 /* ALTMainViewController.h */,
+				CEA6377723C3941200CEC7A9 /* ALTMainViewController.m */,
+				D69D3D6623C6ADF00095CEC9 /* ALTAddAppleIDViewController.h */,
+				D69D3D6723C6ADF00095CEC9 /* ALTAddAppleIDViewController.m */,
+				D69D3D6C23C6E7CF0095CEC9 /* ALTDragDropView.h */,
+				D69D3D6D23C6E7CF0095CEC9 /* ALTDragDropView.m */,
+				CEA6377B23C3941200CEC7A9 /* AltDeploy.entitlements */,
 				CEA6377D23C3941200CEC7A9 /* Info.plist */,
-				CEA6377E23C3941200CEC7A9 /* ViewController.h */,
 				CEA6377F23C3941200CEC7A9 /* apple.pem */,
 			);
 			path = AltDeploy;
@@ -567,13 +582,15 @@
 				CEA24B6A23C1234100A6DB11 /* ALTCertificate.m in Sources */,
 				CEA24B6523C1234100A6DB11 /* ALTAppGroup.m in Sources */,
 				CEA24BE023C12A3100A6DB11 /* unzip.c in Sources */,
+				D69D3D6B23C6B0950095CEC9 /* ALTAppleIDManager.m in Sources */,
 				CEA24B6F23C1234100A6DB11 /* NSFileManager+Apps.m in Sources */,
 				CEA24B6E23C1234100A6DB11 /* ldid.cpp in Sources */,
 				CEA24BFB23C133C500A6DB11 /* AnisetteDataManager.swift in Sources */,
-				CEA6378123C3941200CEC7A9 /* ViewController.m in Sources */,
+				CEA6378123C3941200CEC7A9 /* ALTMainViewController.m in Sources */,
 				CEA24BE523C12A3100A6DB11 /* miniunz.c in Sources */,
 				CEA24BE423C12A3100A6DB11 /* minizip.c in Sources */,
 				CEA24B6723C1234100A6DB11 /* ALTTeam.m in Sources */,
+				D69D3D6E23C6E7CF0095CEC9 /* ALTDragDropView.m in Sources */,
 				CEA6378423C3941200CEC7A9 /* AppDelegate.m in Sources */,
 				CEA24B6423C1234100A6DB11 /* ALTDevice.m in Sources */,
 				CEA24B6623C1234100A6DB11 /* ALTAppID.m in Sources */,
@@ -581,6 +598,7 @@
 				CEA24BEB23C130CD00A6DB11 /* ALTDeviceManager.mm in Sources */,
 				CEA24BE223C12A3100A6DB11 /* ioapi.c in Sources */,
 				CEA24B6023C1234100A6DB11 /* ALTAppleAPISession.m in Sources */,
+				D69D3D6823C6ADF00095CEC9 /* ALTAddAppleIDViewController.m in Sources */,
 				CEA24B6823C1234100A6DB11 /* ALTCertificateRequest.m in Sources */,
 				CEA24B6223C1234100A6DB11 /* ALTCapabilities.m in Sources */,
 				CEA24B6C23C1234100A6DB11 /* ALTAnisetteData.m in Sources */,
@@ -725,10 +743,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AltDeploy/AltDeploy.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MB269FV75D;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				HEADER_SEARCH_PATHS = (
@@ -750,6 +768,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AltDeploy-Bridge.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -759,10 +778,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AltDeploy/AltDeploy.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MB269FV75D;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,

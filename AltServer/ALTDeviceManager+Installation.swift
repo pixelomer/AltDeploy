@@ -14,6 +14,7 @@ enum InstallError: LocalizedError
 {
     case cancelled
     case noTeam
+    case noSuchDevice
     case missingPrivateKey
     case missingCertificate
     
@@ -21,9 +22,10 @@ enum InstallError: LocalizedError
         switch self
         {
         case .cancelled: return NSLocalizedString("The operation was cancelled.", comment: "")
-        case .noTeam: return "You are not a member of any developer teams."
-        case .missingPrivateKey: return "The developer certificate's private key could not be found."
-        case .missingCertificate: return "The developer certificate could not be found."
+        case .noTeam: return NSLocalizedString("You are not a member of any developer teams.", comment: "")
+        case .noSuchDevice: return NSLocalizedString("This device is not registered to your development team, turn on \"Register Device Automatically\" if necessary.", comment: "")
+        case .missingPrivateKey: return NSLocalizedString("The developer certificate's private key could not be found.", comment: "")
+        case .missingCertificate: return NSLocalizedString("The developer certificate could not be found.", comment: "")
         }
     }
 }
@@ -69,7 +71,7 @@ extension ALTDeviceManager
 								progress.completedUnitCount += 1
 								progress.localizedDescription = "Registering device...";
                                 
-                                self.register(device, team: team, session: session) { (result) in
+                                self.fetchOrRegister(device, team: team, session: session) { (result) in
                                     do
                                     {
                                         let device = try result.get()
@@ -105,12 +107,12 @@ extension ALTDeviceManager
 														progress.completedUnitCount += 1
 														progress.localizedDescription = "Registering the App ID...";
                                                         
-                                                        self.registerAppID(name: "AltStore", identifier: "com.rileytestut.AltStore", team: team, session: session) { (result) in
+                                                        self.registerAppID(name: "ALT- \(application.name)", identifier: application.bundleIdentifier, team: team, session: session) { (result) in
                                                             do
                                                             {
                                                                 let appID = try result.get()
 																progress.completedUnitCount += 1
-																progress.localizedDescription = "Updating app ID...";
+																progress.localizedDescription = "Updating App ID...";
                                                                 
                                                                 self.updateFeatures(for: appID, app: application, team: team, session: session) { (result) in
                                                                     do
@@ -127,7 +129,7 @@ extension ALTDeviceManager
 																				progress.localizedDescription = "Beginning installation...";
                                                                                 
                                                                                 self.install(application, to: device, team: team, appID: appID, certificate: certificate, profile: provisioningProfile, progress: progress) { (result) in
-                                                                                    finish(result.error, title: "Failed to Install AltStore")
+                                                                                    finish(result.error, title: "Failed to Install App")
                                                                                 }
                                                                             }
                                                                             catch
@@ -289,11 +291,11 @@ extension ALTDeviceManager
                 {
                     DispatchQueue.main.sync {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString("Installing AltStore will revoke your iOS development certificate.", comment: "")
+                        alert.messageText = NSLocalizedString("Installing AltDeploy will revoke your iOS development certificate.", comment: "")
                         alert.informativeText = NSLocalizedString("""
 This will not affect apps you've submitted to the App Store, but may cause apps you've installed to your devices with Xcode to stop working until you reinstall them.
 
-To prevent this from happening, feel free to try again with another Apple ID to install AltStore.
+To prevent this from happening, feel free to try again with another Apple ID to install AltDeploy.
 """, comment: "")
                         
                         alert.addButton(withTitle: NSLocalizedString("Continue", comment: ""))
@@ -370,7 +372,7 @@ To prevent this from happening, feel free to try again with another Apple ID to 
                 }
                 else
                 {
-                    ALTAppleAPI.shared.addCertificate(machineName: "AltStore", to: team, session: session) { (certificate, error) in
+                    ALTAppleAPI.shared.addCertificate(machineName: "AltDeploy", to: team, session: session) { (certificate, error) in
                         do
                         {
                             let certificate = try Result(certificate, error).get()
@@ -411,19 +413,20 @@ To prevent this from happening, feel free to try again with another Apple ID to 
     
     func registerAppID(name appName: String, identifier: String, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void)
     {
-        let bundleID = "com.\(team.identifier).\(identifier)"
-        
         ALTAppleAPI.shared.fetchAppIDs(for: team, session: session) { (appIDs, error) in
             do
             {
                 let appIDs = try Result(appIDs, error).get()
                 
-                if let appID = appIDs.first(where: { $0.bundleIdentifier == bundleID })
+                if let appID = appIDs.first(where: { $0.bundleIdentifier.hasSuffix(".\(identifier)") })
                 {
                     completionHandler(.success(appID))
                 }
                 else
                 {
+                    let uuid = UUID.init().uuidString;
+                    let bundleID = "ALT-\(uuid).\(identifier)"
+                    
                     ALTAppleAPI.shared.addAppID(withName: appName, bundleIdentifier: bundleID, team: team, session: session) { (appID, error) in
                         completionHandler(Result(appID, error))
                     }
@@ -458,7 +461,7 @@ To prevent this from happening, feel free to try again with another Apple ID to 
         }
     }
     
-    func register(_ device: ALTDevice, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTDevice, Error>) -> Void)
+    func fetchOrRegister(_ device: ALTDevice, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTDevice, Error>) -> Void)
     {
         ALTAppleAPI.shared.fetchDevices(for: team, session: session) { (devices, error) in
             do
@@ -471,8 +474,12 @@ To prevent this from happening, feel free to try again with another Apple ID to 
                 }
                 else
                 {
-                    ALTAppleAPI.shared.registerDevice(name: device.name, identifier: device.identifier, team: team, session: session) { (device, error) in
-                        completionHandler(Result(device, error))
+                    if self.registerDeviceAutomatically {
+                        ALTAppleAPI.shared.registerDevice(name: device.name, identifier: device.identifier, team: team, session: session) { (device, error) in
+                            completionHandler(Result(device, error))
+                        }
+                    } else {
+                        completionHandler(.failure(InstallError.noSuchDevice))
                     }
                 }
             }
@@ -505,7 +512,6 @@ To prevent this from happening, feel free to try again with another Apple ID to 
 				}
 				catch
 				{
-					print("Failed to install app", error)
 					completionHandler(.failure(error))
 				}
 			}
