@@ -107,7 +107,7 @@ extension ALTDeviceManager
 														progress.completedUnitCount += 1
 														progress.localizedDescription = "Registering the App ID...";
                                                         
-                                                        self.registerAppID(name: "ALT- \(application.name)", identifier: application.bundleIdentifier, team: team, session: session) { (result) in
+                                                        self.registerAppID(name: "ALT-\(application.name)", identifier: application.bundleIdentifier, team: team, session: session) { (result) in
                                                             do
                                                             {
                                                                 let appID = try result.get()
