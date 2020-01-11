@@ -8,7 +8,9 @@
 
 #import "ALTPreferencesViewController.h"
 #import <SAMKeychain/SAMKeychain.h>
+#import "ALTAppleIDManager.h"
 #import "ALTMainViewController.h"
+#import "ALTAddAppleIDViewController.h"
 
 @implementation ALTPreferencesViewController
 
@@ -31,6 +33,9 @@
 - (void)refreshAccounts {
 	accounts = [SAMKeychain accountsForService:NSBundle.mainBundle.bundleIdentifier];
     [_tableView reloadData];
+    if ([self.presentingViewController conformsToProtocol:@protocol(ALTAddAppleIDDelegate)]) {
+		[(id<ALTAddAppleIDDelegate>)self.presentingViewController didAddAppleID];
+	}
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -57,6 +62,25 @@
 	_modifyButton.enabled = enableButtons;
 	_removeButton.enabled = enableButtons;
 	_setAsDefaultButton.enabled = enableButtons;
+}
+
+- (IBAction)didPressRemove:(id)sender {
+	[[ALTAppleIDManager sharedManager] removeAppleID:accounts[_tableView.selectedRow][kSAMKeychainAccountKey]];
+	[self refreshAccounts];
+}
+
+- (void)didAddAppleID {
+	[self refreshAccounts];
+}
+
+- (IBAction)didPressModify:(id)sender {
+	ALTAddAppleIDViewController *vc = (ALTAddAppleIDViewController *)[[NSStoryboard storyboardWithName:@"Main" bundle:NSBundle.mainBundle] instantiateControllerWithIdentifier:@"appleid"];
+	[vc loadView];
+	vc.title = @"Modify Apple ID";
+	vc.usernameField.enabled = NO;
+	vc.usernameField.stringValue = accounts[_tableView.selectedRow][kSAMKeychainAccountKey];
+	vc.delegate = self;
+	[self presentViewControllerAsModalWindow:vc];
 }
 
 @end

@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ALTPreferencesViewController : NSViewController<NSTableViewDelegate, NSTableViewDataSource> {
+@protocol ALTAddAppleIDDelegate;
+
+@interface ALTPreferencesViewController : NSViewController<NSTableViewDelegate, NSTableViewDataSource, ALTAddAppleIDDelegate> {
 	NSArray<NSDictionary<NSString *, id> *> *accounts;
-	NSArray<NSArray<NSTextFieldCell *> *> *cells;
 	NSDateFormatter *dateFormatter;
 }
 @property (weak) IBOutlet NSButton *modifyButton;

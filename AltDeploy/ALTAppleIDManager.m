@@ -45,4 +45,8 @@
     return [SAMKeychain passwordForService:NSBundle.mainBundle.bundleIdentifier account:username];
 }
 
+- (void)removeAppleID:(NSString *)username {
+	[SAMKeychain deletePasswordForService:NSBundle.mainBundle.bundleIdentifier account:username];
+}
+
 @end
