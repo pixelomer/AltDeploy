@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1A4B1223CB41AA00489EAD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A4B1123CB41AA00489EAD /* libiconv.tbd */; };
 		CE5F0E3B23C3894300445F16 /* AltPlugin.mailbundle in Resources */ = {isa = PBXBuildFile; fileRef = CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */; };
 		CE64527723C8D1A200BA4593 /* ALTPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE64527623C8D1A200BA4593 /* ALTPreferencesViewController.m */; };
 		CE72335323C8BD0F0019006B /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = CE72335223C8BD0F0019006B /* AppIcon.icns */; };
@@ -34,12 +35,6 @@
 		CEA24B6F23C1234100A6DB11 /* NSFileManager+Apps.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5A23C1234100A6DB11 /* NSFileManager+Apps.m */; };
 		CEA24B7023C1234100A6DB11 /* NSError+ALTErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B5C23C1234100A6DB11 /* NSError+ALTErrors.m */; };
 		CEA24B7723C1278B00A6DB11 /* NSError+ALTServerError.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */; };
-		CEA24BE023C12A3100A6DB11 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8823C12A3100A6DB11 /* unzip.c */; };
-		CEA24BE123C12A3100A6DB11 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8923C12A3100A6DB11 /* zip.c */; };
-		CEA24BE223C12A3100A6DB11 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8A23C12A3100A6DB11 /* ioapi.c */; };
-		CEA24BE323C12A3100A6DB11 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B8B23C12A3100A6DB11 /* mztools.c */; };
-		CEA24BE423C12A3100A6DB11 /* minizip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B9123C12A3100A6DB11 /* minizip.c */; };
-		CEA24BE523C12A3100A6DB11 /* miniunz.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA24B9223C12A3100A6DB11 /* miniunz.c */; };
 		CEA24BEB23C130CD00A6DB11 /* ALTDeviceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BE823C130CD00A6DB11 /* ALTDeviceManager.mm */; };
 		CEA24BEC23C130CD00A6DB11 /* ALTDeviceManager+Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BE923C130CD00A6DB11 /* ALTDeviceManager+Installation.swift */; };
 		CEA24BF723C132E000A6DB11 /* Result+Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */; };
@@ -72,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE1A4B1123CB41AA00489EAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		CE5F0E3A23C3894300445F16 /* AltPlugin.mailbundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AltPlugin.mailbundle; sourceTree = "<group>"; };
 		CE64527523C8D1A200BA4593 /* ALTPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALTPreferencesViewController.h; sourceTree = "<group>"; };
 		CE64527623C8D1A200BA4593 /* ALTPreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALTPreferencesViewController.m; sourceTree = "<group>"; };
@@ -125,17 +121,6 @@
 		CEA24B7423C1278B00A6DB11 /* NSError+ALTServerError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ALTServerError.h"; sourceTree = "<group>"; };
 		CEA24B7523C1278B00A6DB11 /* AltKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltKit.h; sourceTree = "<group>"; };
 		CEA24B7623C1278B00A6DB11 /* NSError+ALTServerError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ALTServerError.m"; sourceTree = "<group>"; };
-		CEA24B8823C12A3100A6DB11 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		CEA24B8923C12A3100A6DB11 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		CEA24B8A23C12A3100A6DB11 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		CEA24B8B23C12A3100A6DB11 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		CEA24B8C23C12A3100A6DB11 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		CEA24B8D23C12A3100A6DB11 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		CEA24B8E23C12A3100A6DB11 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		CEA24B8F23C12A3100A6DB11 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		CEA24B9023C12A3100A6DB11 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		CEA24B9123C12A3100A6DB11 /* minizip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minizip.c; sourceTree = "<group>"; };
-		CEA24B9223C12A3100A6DB11 /* miniunz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = miniunz.c; sourceTree = "<group>"; };
 		CEA24B9423C12A3100A6DB11 /* cctest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cctest.h; sourceTree = "<group>"; };
 		CEA24B9523C12A3100A6DB11 /* cczp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cczp.h; sourceTree = "<group>"; };
 		CEA24B9623C12A3100A6DB11 /* ccmd4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccmd4.h; sourceTree = "<group>"; };
@@ -246,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1A4B1223CB41AA00489EAD /* libiconv.tbd in Frameworks */,
 				CE77231123C76FE30000C344 /* libssl.a in Frameworks */,
 				CE77230B23C76FDC0000C344 /* libcrypto.a in Frameworks */,
 				CE77231323C76FE50000C344 /* libusbmuxd.a in Frameworks */,
@@ -269,7 +255,6 @@
 				CEA24B2D23C1234100A6DB11 /* AltSign */,
 				CEA24B9323C12A3100A6DB11 /* corecrypto */,
 				CE7AA85723C3B62A009EFA51 /* Dependencies */,
-				CEA24B8723C12A3100A6DB11 /* minizip */,
 				CEA24A9A23C10F8900A6DB11 /* Products */,
 				CEA24AB023C10FCD00A6DB11 /* Frameworks */,
 			);
@@ -286,6 +271,7 @@
 		CEA24AB023C10FCD00A6DB11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE1A4B1123CB41AA00489EAD /* libiconv.tbd */,
 				CE77230A23C76FDC0000C344 /* libcrypto.a */,
 				CE77231023C76FE30000C344 /* libssl.a */,
 				CE77231223C76FE50000C344 /* libusbmuxd.a */,
@@ -358,24 +344,6 @@
 				CEA24BF423C132E000A6DB11 /* Result+Conveniences.swift */,
 			);
 			path = AltKit;
-			sourceTree = "<group>";
-		};
-		CEA24B8723C12A3100A6DB11 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				CEA24B8823C12A3100A6DB11 /* unzip.c */,
-				CEA24B8923C12A3100A6DB11 /* zip.c */,
-				CEA24B8A23C12A3100A6DB11 /* ioapi.c */,
-				CEA24B8B23C12A3100A6DB11 /* mztools.c */,
-				CEA24B8C23C12A3100A6DB11 /* crypt.h */,
-				CEA24B8D23C12A3100A6DB11 /* zip.h */,
-				CEA24B8E23C12A3100A6DB11 /* unzip.h */,
-				CEA24B8F23C12A3100A6DB11 /* mztools.h */,
-				CEA24B9023C12A3100A6DB11 /* ioapi.h */,
-				CEA24B9123C12A3100A6DB11 /* minizip.c */,
-				CEA24B9223C12A3100A6DB11 /* miniunz.c */,
-			);
-			path = minizip;
 			sourceTree = "<group>";
 		};
 		CEA24B9323C12A3100A6DB11 /* corecrypto */ = {
@@ -586,18 +554,14 @@
 			files = (
 				CEA24B5E23C1234100A6DB11 /* ALTAppleAPI.m in Sources */,
 				CEA24B6B23C1234100A6DB11 /* ALTProvisioningProfile.m in Sources */,
-				CEA24BE323C12A3100A6DB11 /* mztools.c in Sources */,
 				CEA24B7023C1234100A6DB11 /* NSError+ALTErrors.m in Sources */,
 				CEA24B6A23C1234100A6DB11 /* ALTCertificate.m in Sources */,
 				CEA24B6523C1234100A6DB11 /* ALTAppGroup.m in Sources */,
-				CEA24BE023C12A3100A6DB11 /* unzip.c in Sources */,
 				D69D3D6B23C6B0950095CEC9 /* ALTAppleIDManager.m in Sources */,
 				CEA24B6F23C1234100A6DB11 /* NSFileManager+Apps.m in Sources */,
 				CEA24B6E23C1234100A6DB11 /* ldid.cpp in Sources */,
 				CEA24BFB23C133C500A6DB11 /* AnisetteDataManager.swift in Sources */,
 				CEA6378123C3941200CEC7A9 /* ALTMainViewController.m in Sources */,
-				CEA24BE523C12A3100A6DB11 /* miniunz.c in Sources */,
-				CEA24BE423C12A3100A6DB11 /* minizip.c in Sources */,
 				CEA24B6723C1234100A6DB11 /* ALTTeam.m in Sources */,
 				D69D3D6E23C6E7CF0095CEC9 /* ALTDragDropView.m in Sources */,
 				CEA6378423C3941200CEC7A9 /* AppDelegate.m in Sources */,
@@ -605,13 +569,11 @@
 				CEA24B6623C1234100A6DB11 /* ALTAppID.m in Sources */,
 				CEA24B6D23C1234100A6DB11 /* ALTApplication.mm in Sources */,
 				CEA24BEB23C130CD00A6DB11 /* ALTDeviceManager.mm in Sources */,
-				CEA24BE223C12A3100A6DB11 /* ioapi.c in Sources */,
 				CEA24B6023C1234100A6DB11 /* ALTAppleAPISession.m in Sources */,
 				D69D3D6823C6ADF00095CEC9 /* ALTAddAppleIDViewController.m in Sources */,
 				CEA24B6823C1234100A6DB11 /* ALTCertificateRequest.m in Sources */,
 				CEA24B6223C1234100A6DB11 /* ALTCapabilities.m in Sources */,
 				CEA24B6C23C1234100A6DB11 /* ALTAnisetteData.m in Sources */,
-				CEA24BE123C12A3100A6DB11 /* zip.c in Sources */,
 				CEA24B7723C1278B00A6DB11 /* NSError+ALTServerError.m in Sources */,
 				CEA24BF723C132E000A6DB11 /* Result+Conveniences.swift in Sources */,
 				CEA24BEC23C130CD00A6DB11 /* ALTDeviceManager+Installation.swift in Sources */,
@@ -773,7 +735,7 @@
 					"$(PROJECT_DIR)/Dependencies",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_CFLAGS = "-Dunix=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -807,7 +769,7 @@
 					"$(PROJECT_DIR)/Dependencies",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_CFLAGS = "-Dunix=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelomer.altdeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -282,7 +282,7 @@ std::string CertificatesContent(ALTCertificate *altCertificate)
             }
             
             NSString *entitlements = entitlementsByFileURL[fileURL];
-            return entitlements.UTF8String;
+            return (entitlements ?: @"").UTF8String;
         }),
                    ldid::fun([&](const std::string &string) {
             progress.completedUnitCount += 1;
